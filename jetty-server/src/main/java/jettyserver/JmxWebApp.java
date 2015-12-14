@@ -1,6 +1,8 @@
 package jettyserver;
 
 import org.eclipse.jetty.jmx.MBeanContainer;
+import org.eclipse.jetty.server.HttpConnectionFactory;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import java.io.File;

@@ -12,6 +12,7 @@
     <modules>
         <module>m101j</module>
         <module>jetty-server</module>
+        <module>jersey-webapp</module>
     </modules>
 
     <properties>
