@@ -1,6 +1,5 @@
 package simpleservice;
 
-import simpleservice.status.StatusResource;
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -49,7 +48,7 @@ public class Main {
 
   private static ResourceConfig createJerseyResourceConfig() {
     final ResourceConfig resourceConfig = new ResourceConfig();
-    resourceConfig.register(new StatusResource());
+    resourceConfig.register(new HelloResource());
     return resourceConfig;
   }
 
