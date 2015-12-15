@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="ROOT" class="ch.qos.logback.core.FileAppender">
+        <file>log/jersey-webapp.log</file>
+    </appender>
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="ROOT"/>
+    </root>
+</configuration>

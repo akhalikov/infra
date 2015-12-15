@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.akhalikov</groupId>
+        <artifactId>backend-study</artifactId>
+        <version>1</version>
+    </parent>
+
+    <groupId>com.akhalikov</groupId>
+    <artifactId>jersey-simpleservice</artifactId>
+    <packaging>jar</packaging>
+    <version>1</version>
+
+    <properties>
+        <jetty.version>9.3.0.v20150612</jetty.version>
+        <jersey.version>2.22.1</jersey.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-server</argument>
+                        <argument>-Xss512K</argument>
+                        <argument>-Xmx256M</argument>
+                        <argument>-XX:MaxMetaspaceSize=64M</argument>
+                        <argument>-XX:MaxGCPauseMillis=100</argument>
+                        <argument>-XX:+UseConcMarkSweepGC</argument>
+                        <argument>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9105</argument>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>simpleservice.Main</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-jmx</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+    </dependencies>
+</project>
