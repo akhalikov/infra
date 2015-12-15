@@ -26,6 +26,7 @@ public class MinimalServlets {
     // This is a raw Servlet, not a Servlet that has been configured
     // through a web.xml @WebServlet annotation, or anything similar.
     handler.addServletWithMapping(HelloServlet.class, "/*");
+    handler.addServletWithMapping(ByeServlet.class, "/bye");
 
     server.start();
     server.join();
