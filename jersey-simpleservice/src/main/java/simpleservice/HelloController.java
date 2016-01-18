@@ -16,6 +16,6 @@ public class HelloController {
   @GET
   public String hello() {
     log.info("Test log message");
-    return "<h1>Hello!</h1>";
+    return "<h1>Hello, Backend!</h1>";
   }
 }
