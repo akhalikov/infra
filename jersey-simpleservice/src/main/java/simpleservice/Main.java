@@ -17,7 +17,7 @@ import javax.servlet.Servlet;
  * @author ahalikov
  */
 public class Main {
-  private static int SERVER_PORT = 8080;
+  private static int SERVER_PORT = 8181;
 
   public static void main(String[] args) throws Exception {
     SLF4JBridgeHandler.removeHandlersForRootLogger();
@@ -48,7 +48,8 @@ public class Main {
 
   private static ResourceConfig createJerseyResourceConfig() {
     final ResourceConfig resourceConfig = new ResourceConfig();
-    resourceConfig.register(new HelloResource());
+    resourceConfig.register(new HelloController());
+    resourceConfig.register(new KaptchaController());
     return resourceConfig;
   }
 

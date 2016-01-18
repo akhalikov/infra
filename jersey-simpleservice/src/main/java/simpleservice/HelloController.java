@@ -10,8 +10,7 @@ import javax.ws.rs.Path;
  * Hello resource
  */
 @Path("/")
-public class HelloResource {
-
+public class HelloController {
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
   @GET
