@@ -13,6 +13,7 @@
         <module>m101j</module>
         <module>jetty-server</module>
         <module>jersey-simpleservice</module>
+        <module>cassandra-java-client</module>
     </modules>
 
     <properties>
