@@ -8,4 +8,12 @@
     <bean class="quoters.TerminatorQuoter" id="terminatorQuoter">
         <property name="message" value="I'll be back" />
     </bean>
+
+    <bean class="quoters.FooDao" id="fooDao" />
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <value>app.properties</value>
+        </property>
+    </bean>
 </beans>
