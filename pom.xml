@@ -15,6 +15,7 @@
         <module>jersey-simpleservice</module>
         <module>cassandra-java-client</module>
         <module>hibernate</module>
+        <module>postgres</module>
     </modules>
 
     <properties>
