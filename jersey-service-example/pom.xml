@@ -4,12 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.akhalikov</groupId>
-        <artifactId>backend-study</artifactId>
+        <artifactId>backend</artifactId>
         <version>1</version>
     </parent>
 
-    <groupId>com.akhalikov</groupId>
-    <artifactId>jersey-simpleservice</artifactId>
+    <artifactId>jersey-service-example</artifactId>
     <packaging>jar</packaging>
     <version>1</version>
 

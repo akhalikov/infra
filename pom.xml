@@ -4,18 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.akhalikov</groupId>
-    <artifactId>backend-study</artifactId>
+    <artifactId>backend</artifactId>
     <packaging>pom</packaging>
     <version>1</version>
-    <name>backend-study</name>
+    <name>backend</name>
 
     <modules>
-        <module>m101j</module>
         <module>jetty-server</module>
-        <module>jersey-simpleservice</module>
+        <module>jersey-service-example</module>
         <module>cassandra-java-client</module>
-        <module>hibernate</module>
-        <module>postgres</module>
     </modules>
 
     <properties>
@@ -69,6 +66,11 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
