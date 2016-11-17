@@ -15,8 +15,11 @@ public class App {
   }
 
   private void start() {
+
     createEvents();
     pullEvents();
+
+    HibernateUtil.shutdown();
   }
 
   private void createEvents() {

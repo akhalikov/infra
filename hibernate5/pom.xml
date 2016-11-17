@@ -11,6 +11,7 @@
 
     <modules>
         <module>hibernate5-hello</module>
+        <module>hibernate5-spring</module>
     </modules>
 
     <properties>
