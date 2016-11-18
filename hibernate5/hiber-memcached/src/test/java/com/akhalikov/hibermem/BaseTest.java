@@ -1,4 +1,4 @@
-package com.akhalikov.backend.hibernate5;
+package com.akhalikov.hibermem;
 
 import org.hibernate.SessionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,6 +1,6 @@
-package com.akhalikov.backend.hibernate5;
+package com.akhalikov.hibermem;
 
-import com.akhalikov.backend.hibernate5.event.EventDao;
+import com.akhalikov.hibermem.event.EventDao;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

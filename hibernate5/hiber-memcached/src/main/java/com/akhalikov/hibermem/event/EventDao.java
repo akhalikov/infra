@@ -1,4 +1,4 @@
-package com.akhalikov.backend.hibernate5.event;
+package com.akhalikov.hibermem.event;
 
 import org.hibernate.SessionFactory;
 

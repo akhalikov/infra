@@ -1,4 +1,4 @@
-package com.akhalikov.backend.hibernate5;
+package com.akhalikov.hibermem;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -26,7 +26,7 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="com.akhalikov.backend.hibernate5.Event"/>
+        <mapping class="com.akhalikov.hellohiber.Event"/>
 
     </session-factory>
 </hibernate-configuration>

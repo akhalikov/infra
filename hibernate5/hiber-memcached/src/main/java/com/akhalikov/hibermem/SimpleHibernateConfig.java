@@ -1,4 +1,4 @@
-package com.akhalikov.backend.hibernate5;
+package com.akhalikov.hibermem;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.FactoryBean;
@@ -12,12 +12,12 @@ import javax.sql.DataSource;
 
 @Configuration
 @Import(DataSourceContextConfig.class)
-class MemcachedHibernateConfig {
+class SimpleHibernateConfig {
   @Bean
   FactoryBean<SessionFactory> sessionFactory(final DataSource dataSource) {
     final LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
     sessionFactoryBean.setDataSource(dataSource);
-    sessionFactoryBean.setConfigLocation(new ClassPathResource("hibernate-memcached.cfg.xml"));
+    sessionFactoryBean.setConfigLocation(new ClassPathResource("hibernate.cfg.xml"));
     return sessionFactoryBean;
   }
 }

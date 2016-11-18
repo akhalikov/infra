@@ -1,11 +1,11 @@
-package com.akhalikov.backend.hibernate5;
+package com.akhalikov.hellohiber;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class HibernateUtil {
+class HibernateUtil {
   private static final SessionFactory sessionFactory = buildSessionFactory();
 
   private static SessionFactory buildSessionFactory() {
@@ -29,7 +29,7 @@ public class HibernateUtil {
     return sessionFactory;
   }
 
-  public static void shutdown() {
+  static void shutdown() {
     getSessionFactory().close();
   }
 }

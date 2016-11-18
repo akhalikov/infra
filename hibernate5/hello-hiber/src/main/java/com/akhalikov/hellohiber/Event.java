@@ -1,4 +1,4 @@
-package com.akhalikov.backend.hibernate5;
+package com.akhalikov.hellohiber;
 
 import org.hibernate.annotations.GenericGenerator;
 

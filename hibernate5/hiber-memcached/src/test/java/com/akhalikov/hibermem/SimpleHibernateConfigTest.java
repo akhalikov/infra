@@ -1,7 +1,7 @@
-package com.akhalikov.backend.hibernate5;
+package com.akhalikov.hibermem;
 
-import com.akhalikov.backend.hibernate5.event.Event;
-import com.akhalikov.backend.hibernate5.event.EventDao;
+import com.akhalikov.hibermem.event.Event;
+import com.akhalikov.hibermem.event.EventDao;
 import org.hibernate.Session;
 import org.hibernate.stat.Statistics;
 import org.springframework.test.context.ContextConfiguration;
