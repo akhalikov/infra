@@ -1,10 +1,14 @@
-package com.akhalikov.tutorial.hibernate;
+package com.akhalikov.backend.hibernate5.event;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -12,34 +16,27 @@ import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Table(name = "event")
+@AttributeOverride(name = "id", column = @Column(name = "event_id", nullable = false))
 public class Event {
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  private Integer id;
+
+  @Column
   private String title;
+
+  @Column(name = "event_date")
+  @Temporal(TemporalType.TIMESTAMP)
   private Date date;
 
-  /**
-   * For Hibernate
-   */
-  Event() {
-  }
-
-  /**
-   * For application use
-   */
-  public Event(String title, Date date) {
-    this.title = title;
-    this.date = date;
-  }
-
-  @Id
-  @GeneratedValue(generator = "increment")
-  @GenericGenerator(name = "increment", strategy = "increment")
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -51,8 +48,6 @@ public class Event {
     this.title = title;
   }
 
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(name = "EVENT_DATE")
   public Date getDate() {
     return date;
   }
