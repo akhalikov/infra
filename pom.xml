@@ -13,6 +13,7 @@
         <module>jetty-server</module>
         <module>jersey-service-example</module>
         <module>cassandra-java-client</module>
+        <module>spring-examples</module>
     </modules>
 
     <properties>

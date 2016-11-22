@@ -6,10 +6,9 @@
         <version>1</version>
     </parent>
 
-    <groupId>com.akhalikov</groupId>
     <artifactId>cassandra-java-client</artifactId>
     <packaging>jar</packaging>
-    <version>1</version>
+    <version>${project.version}</version>
 
     <properties>
         <java.version>1.8</java.version>

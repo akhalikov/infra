@@ -4,14 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.akhalikov</groupId>
-        <artifactId>backend-study</artifactId>
+        <artifactId>backend</artifactId>
         <version>1</version>
     </parent>
 
-    <groupId>com.akhalikov</groupId>
     <artifactId>jetty-server</artifactId>
     <packaging>jar</packaging>
-    <version>1</version>
+    <version>${project.version}</version>
 
     <properties>
         <jetty.version>9.3.0.v20150612</jetty.version>

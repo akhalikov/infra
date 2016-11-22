@@ -10,7 +10,7 @@
 
     <artifactId>jersey-service-example</artifactId>
     <packaging>jar</packaging>
-    <version>1</version>
+    <version>${project.version}</version>
 
     <properties>
         <jetty.version>9.3.0.v20150612</jetty.version>
