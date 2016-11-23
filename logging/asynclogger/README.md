@@ -1,0 +1,1 @@
+An attempt to design and simulate asynchronous logging

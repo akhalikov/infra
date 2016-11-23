@@ -1,0 +1,6 @@
+<configuration>
+    <property scope="context" name="logback.console" value="true"/>
+
+    <include resource="logback-include.xml"/>
+
+</configuration>
