@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+
+        <!-- Second-level cache -->
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">com.mc.hibernate.memcached.MemcachedRegionFactory</property>
+
+        <!-- Memcached settings -->
+        <property name="hibernate.memcached.operationTimeout">5000</property>
+        <property name="hibernate.memcached.connectionFactory">KetamaConnectionFactory</property>
+        <property name="hibernate.memcached.hashAlgorithm">KETAMA_HASH</property>
+        <property name="hibernate.memcached.servers">127.0.0.1:11211</property>
+        <property name="hibernate.memcached.initConn">1</property>
+        <property name="hibernate.memcached.minConn">1</property>
+        <property name="hibernate.memcached.maxConn">1</property>
+        <property name="hibernate.memcached.protocol">TEXT</property>
+        <property name="hibernate.memcached.failureMode">Cancel</property>
+
+        <property name="cache.use_query_cache">false</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">create</property>
+
+        <!-- Names the annotated entity class -->
+        <mapping class="com.akhalikov.event.Event"/>
+
+    </session-factory>
+
+</hibernate-configuration>

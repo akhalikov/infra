@@ -10,8 +10,8 @@
     <name>hibernate5</name>
 
     <modules>
-        <module>hello-hiber</module>
-        <module>hiber-memcached</module>
+        <module>hello-hibernate</module>
+        <module>hibernate-cache</module>
     </modules>
 
     <properties>
@@ -60,6 +60,14 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+
+            <!--Testing-->
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.7</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
