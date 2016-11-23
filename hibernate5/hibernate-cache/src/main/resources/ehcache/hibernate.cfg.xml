@@ -18,7 +18,7 @@
         <property name="cache.use_second_level_cache">true</property>
         <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 
-        <!-- ehcache -->
+        <!-- EhCache settings -->
         <property name="net.sf.ehcache.configurationResourceName">ehcache/ehcache.xml</property>
 
         <!-- Echo all executed SQL to stdout -->
