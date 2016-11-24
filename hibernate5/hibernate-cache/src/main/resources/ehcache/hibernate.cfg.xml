@@ -28,7 +28,7 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="com.akhalikov.event.Event"/>
+        <mapping class="com.akhalikov.entity.Event"/>
 
     </session-factory>
 

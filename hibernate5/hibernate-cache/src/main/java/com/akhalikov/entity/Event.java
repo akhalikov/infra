@@ -1,4 +1,4 @@
-package com.akhalikov.event;
+package com.akhalikov.entity;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
