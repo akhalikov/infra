@@ -19,9 +19,9 @@ Basic examples of integrating Hibernate 5 with memcached
 * Bootstrap Hibernate SessionFactory (native)
 * Feature HSQLDB in-memory database
 * Feature TestNg
-* Hibernate with memcached as a second-level cache (https://github.com/mihaicostin/hibernate-l2-memcached)
-* Bootstrap Hibernate with EhCache as a second-level cache
-* Use multiple caches (memcached and EhCache) for different regions - MultiCacheRegionFactory
+* Hibernate + memcached as L2-cache (https://github.com/mihaicostin/hibernate-l2-memcached)
+* Hibernate + EhCache as L2-cache
+* Hibernate + miltiple caches (memcached and EhCache) for different regions - MultiCacheRegionFactory
 
 ### spring-examples
 Spring Framework examples
