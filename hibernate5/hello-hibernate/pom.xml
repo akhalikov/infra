@@ -10,8 +10,6 @@
     </parent>
 
     <artifactId>hello-hibernate</artifactId>
-    <packaging>jar</packaging>
-    <version>1</version>
 
     <dependencies>
         <dependency>

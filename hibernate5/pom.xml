@@ -7,7 +7,6 @@
     <artifactId>hibernate5</artifactId>
     <packaging>pom</packaging>
     <version>1</version>
-    <name>hibernate5</name>
 
     <modules>
         <module>hello-hibernate</module>

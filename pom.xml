@@ -7,7 +7,6 @@
     <artifactId>backend</artifactId>
     <packaging>pom</packaging>
     <version>1</version>
-    <name>backend</name>
 
     <modules>
         <module>jetty-server</module>

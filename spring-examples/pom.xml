@@ -9,9 +9,6 @@
     </parent>
 
     <artifactId>spring-examples</artifactId>
-    <packaging>jar</packaging>
-    <version>${project.version}</version>
-    <name>spring-examples</name>
 
     <properties>
         <spring.version>4.3.4.RELEASE</spring.version>

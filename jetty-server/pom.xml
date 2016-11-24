@@ -9,8 +9,6 @@
     </parent>
 
     <artifactId>jetty-server</artifactId>
-    <packaging>jar</packaging>
-    <version>${project.version}</version>
 
     <properties>
         <jetty.version>9.3.0.v20150612</jetty.version>

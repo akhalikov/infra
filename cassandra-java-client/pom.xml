@@ -2,13 +2,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.akhalikov</groupId>
-        <artifactId>backend-study</artifactId>
+        <artifactId>backend</artifactId>
         <version>1</version>
     </parent>
 
     <artifactId>cassandra-java-client</artifactId>
-    <packaging>jar</packaging>
-    <version>${project.version}</version>
 
     <properties>
         <java.version>1.8</java.version>

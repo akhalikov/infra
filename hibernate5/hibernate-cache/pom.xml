@@ -10,8 +10,6 @@
     </parent>
 
     <artifactId>hibernate-cache</artifactId>
-    <packaging>jar</packaging>
-    <version>1</version>
 
     <properties>
         <spring.version>4.3.4.RELEASE</spring.version>
