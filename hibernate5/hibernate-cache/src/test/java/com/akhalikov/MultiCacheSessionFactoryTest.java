@@ -18,11 +18,14 @@ import static junit.framework.Assert.assertNotNull;
 
 @ContextConfiguration(classes = {AppContextConfig.class, MultiCacheHibernateConfig.class})
 public class MultiCacheSessionFactoryTest extends TestBase {
+  private static final String DOCUMENT_ENTITY_KEY = "com.akhalikov.entity.Document";
+  private static final String EVENT_ENTITY_KEY = "com.akhalikov.entity.Event";
+
   @Inject
   private DocumentDao documentDao;
 
-  private static final String DOCUMENT_ENTITY_KEY = "com.akhalikov.entity.Document";
-  private static final String EVENT_ENTITY_KEY = "com.akhalikov.entity.Event";
+  @Inject
+  private EventDao eventDao;
 
   @BeforeClass
   public void setUp() throws Exception {
@@ -55,6 +58,9 @@ public class MultiCacheSessionFactoryTest extends TestBase {
   }
 
   public void shouldUseMemcachedByDefault() {
-    
+    final int eventId = 1;
+
+    eventDao.getEvent(eventId);
+    eventDao.getEvent(eventId);
   }
 }

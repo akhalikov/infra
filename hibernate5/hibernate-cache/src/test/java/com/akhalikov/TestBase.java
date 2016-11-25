@@ -35,6 +35,7 @@ public abstract class TestBase extends AbstractTestNGSpringContextTests {
 
   @AfterMethod
   public void tearDown() throws Exception {
+    cache.evictAll();
     statistics.clear();
   }
 }
