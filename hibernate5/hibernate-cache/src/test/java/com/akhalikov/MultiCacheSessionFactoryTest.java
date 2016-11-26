@@ -62,5 +62,7 @@ public class MultiCacheSessionFactoryTest extends TestBase {
 
     eventDao.getEvent(eventId);
     eventDao.getEvent(eventId);
+
+    assertEquals(statistics.getSecondLevelCacheHitCount(), 1);
   }
 }
