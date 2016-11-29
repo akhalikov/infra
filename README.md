@@ -5,8 +5,8 @@
 * techpark-java: [Java course from mail.ru](https://park.mail.ru/materials/video/#7)
 * logging: basic logging examples
 
-### hibernate5
-Basic examples of integrating Hibernate 5 with memcached
+### hibernate
+Basic examples of setting up and using Hibernate (v.5), l2-cache, event listeners, etc.
 
 #### hello-hibernate
 

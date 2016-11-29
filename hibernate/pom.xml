@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.akhalikov.backend</groupId>
-    <artifactId>hibernate5</artifactId>
+    <artifactId>hibernate</artifactId>
     <packaging>pom</packaging>
     <version>1</version>
 
