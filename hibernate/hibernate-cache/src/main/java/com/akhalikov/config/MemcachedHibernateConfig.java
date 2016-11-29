@@ -1,6 +1,10 @@
 package com.akhalikov.config;
 
+import com.akhalikov.integration.HibernateSpringIntegrator;
+import com.akhalikov.integration.MyLoadEventListener;
 import org.hibernate.SessionFactory;
+import org.hibernate.event.spi.LoadEventListener;
+import org.hibernate.integrator.spi.Integrator;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,5 +23,15 @@ public class MemcachedHibernateConfig {
     sessionFactoryBean.setDataSource(dataSource);
     sessionFactoryBean.setConfigLocation(new ClassPathResource("memcached/hibernate.cfg.xml"));
     return sessionFactoryBean;
+  }
+
+  @Bean
+  LoadEventListener loadEventListener() {
+    return new MyLoadEventListener();
+  }
+
+  @Bean
+  HibernateSpringIntegrator hibernateSpringIntegrator() {
+    return new HibernateSpringIntegrator();
   }
 }
