@@ -40,7 +40,12 @@
         <dependency>
             <groupId>com.github.mihaicostin</groupId>
             <artifactId>hibernate-l2-memcached</artifactId>
-            <version>5.2.1.0</version>
+            <version>1.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
         </dependency>
 
         <!--Spring Framework's core functionality-->

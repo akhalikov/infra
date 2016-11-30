@@ -1,7 +1,5 @@
 package com.akhalikov;
 
-import com.akhalikov.entity.Document;
-import com.akhalikov.entity.Event;
 import org.hibernate.Cache;
 import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
@@ -34,12 +32,12 @@ public abstract class TestBase extends AbstractTestNGSpringContextTests {
     statistics.clear();
 
     cache = sessionFactory.getCache();
-    cache.evictAll();
+    cache.evictAllRegions();
   }
 
   @AfterMethod
   public void tearDown() throws Exception {
-    cache.evictAll();
+    cache.evictAllRegions();
     statistics.clear();
   }
 }

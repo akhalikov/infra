@@ -16,7 +16,7 @@
 
         <!--Multiple L2 caches-->
         <property name="hibernate.cache.region.factory_class">com.akhalikov.multicache.MultiCacheRegionFactory</property>
-        <property name="hibernate.multicache.ehcache.region_filters">local</property>
+        <property name="hibernate.ehcache.region_filter">local</property>
 
         <!-- EhCache settings -->
         <property name="net.sf.ehcache.configurationResourceName">ehcache/ehcache.xml</property>

@@ -15,7 +15,7 @@ class EventDao {
 
   List<Event> getEvents() {
     try (final Session session = sessionFactory.openSession()) {
-      return session.createQuery("from Event").list();
+      return session.createQuery("from Event", Event.class).list();
     }
   }
 

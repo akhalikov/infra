@@ -1,8 +1,10 @@
 package com.akhalikov;
 
 import com.akhalikov.entity.Event;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -13,15 +15,26 @@ public class EventDao {
     this.sessionFactory = sessionFactory;
   }
 
+  @SuppressWarnings("unchecked")
   List<Event> getEvents() {
-    return sessionFactory.openSession()
-        .createNativeQuery("SELECT * FROM event", Event.class)
-        .getResultList();
+    final Session session = sessionFactory.openSession();
+    Criteria criteria = session.createCriteria(Event.class);
+    return criteria.list();
   }
 
   Event getEvent(int eventId) {
-    try (Session session = sessionFactory.openSession()) {
-      return session.get(Event.class, eventId);
-    }
+    final Session session = sessionFactory.openSession();
+    Event event = (Event) session.get(Event.class, eventId);
+    session.close();
+    return event;
+  }
+
+  Event getEventWithCriteria(int eventId) {
+    final Session session = sessionFactory.openSession();
+    Criteria criteria = session.createCriteria(Event.class)
+        .add(Restrictions.naturalId().set("id", eventId));
+    Event event = (Event) criteria.uniqueResult();
+    session.close();
+    return event;
   }
 }
