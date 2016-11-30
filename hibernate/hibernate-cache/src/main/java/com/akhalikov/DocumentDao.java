@@ -1,35 +1,27 @@
 package com.akhalikov;
 
 import com.akhalikov.entity.Document;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class DocumentDao {
-  private final SessionFactory sessionFactory;
+  @Inject
+  private SessionFactory sessionFactory;
 
-  public DocumentDao(SessionFactory sessionFactory) {
-    this.sessionFactory = sessionFactory;
-  }
-
-  @SuppressWarnings("unchecked")
-  public List<Document> getDocuments() {
-    final Session session = sessionFactory.openSession();
-    Criteria criteria = session.createCriteria(Document.class);
-    List<Document> documents = criteria.list();
-    session.close();
-    return documents;
+  List<Document> getDocuments() {
+    try (Session session = sessionFactory.openSession()) {
+      return session
+        .createNativeQuery("SELECT * FROM Document", Document.class)
+        .getResultList();
+    }
   }
 
   Document getDocument(int documentId) {
-    final Session session = sessionFactory.openSession();
-    Criteria criteria = session.createCriteria(Document.class);
-    criteria.add(Restrictions.eq("id", documentId));
-    Document document = (Document) criteria.uniqueResult();
-    session.close();
-    return document;
+    try (Session session = sessionFactory.openSession()) {
+      return session.get(Document.class, documentId);
+    }
   }
 }

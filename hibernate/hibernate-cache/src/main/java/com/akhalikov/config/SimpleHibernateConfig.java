@@ -4,15 +4,15 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
 
 @Configuration
-@Import(DataSourceContextConfig.class)
-public class DefaultHibernateConfig {
+@ImportResource("appContext.xml")
+public class SimpleHibernateConfig {
   @Bean
   FactoryBean<SessionFactory> sessionFactory(final DataSource dataSource) {
     final LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();

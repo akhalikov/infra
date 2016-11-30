@@ -1,7 +1,6 @@
 package com.akhalikov;
 
-import com.akhalikov.config.AppContextConfig;
-import com.akhalikov.config.DefaultHibernateConfig;
+import com.akhalikov.config.SimpleHibernateConfig;
 import com.akhalikov.entity.Event;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.Test;
@@ -12,7 +11,7 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
-@ContextConfiguration(classes = {AppContextConfig.class, DefaultHibernateConfig.class})
+@ContextConfiguration(classes = {SimpleHibernateConfig.class})
 public class DefaultSessionFactoryTest extends TestBase {
   @Inject
   private EventDao eventDao;

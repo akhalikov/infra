@@ -1,6 +1,5 @@
 package com.akhalikov;
 
-import com.akhalikov.config.AppContextConfig;
 import com.akhalikov.config.MultiCacheHibernateConfig;
 import com.akhalikov.multicache.CacheRegion;
 import net.sf.ehcache.CacheManager;
@@ -16,10 +15,9 @@ import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
-@ContextConfiguration(classes = {AppContextConfig.class, MultiCacheHibernateConfig.class})
+@ContextConfiguration(classes = {MultiCacheHibernateConfig.class})
 public class MultiCacheSessionFactoryTest extends TestBase {
   private static final String DOCUMENT_ENTITY_KEY = "com.akhalikov.entity.Document";
-  private static final String EVENT_ENTITY_KEY = "com.akhalikov.entity.Event";
 
   @Inject
   private DocumentDao documentDao;
@@ -55,14 +53,5 @@ public class MultiCacheSessionFactoryTest extends TestBase {
     assertEquals(statistics.getSecondLevelCacheHitCount(), 1);
     EntityStatistics entityStatistics = statistics.getEntityStatistics(DOCUMENT_ENTITY_KEY);
     System.out.println(entityStatistics);
-  }
-
-  public void shouldUseMemcachedByDefault() {
-    final int eventId = 1;
-
-    eventDao.getEvent(eventId);
-    eventDao.getEvent(eventId);
-
-    assertEquals(statistics.getSecondLevelCacheHitCount(), 1);
   }
 }

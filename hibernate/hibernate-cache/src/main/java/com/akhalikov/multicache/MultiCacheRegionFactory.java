@@ -1,6 +1,7 @@
 package com.akhalikov.multicache;
 
 import com.mc.hibernate.memcached.MemcachedRegionFactory;
+import org.hibernate.boot.spi.SessionFactoryOptions;
 import org.hibernate.cache.CacheException;
 import org.hibernate.cache.ehcache.EhCacheRegionFactory;
 import org.hibernate.cache.spi.CacheDataDescription;
@@ -11,7 +12,6 @@ import org.hibernate.cache.spi.QueryResultsRegion;
 import org.hibernate.cache.spi.RegionFactory;
 import org.hibernate.cache.spi.TimestampsRegion;
 import org.hibernate.cache.spi.access.AccessType;
-import org.hibernate.cfg.Settings;
 
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -24,12 +24,12 @@ public class MultiCacheRegionFactory implements RegionFactory {
   private Pattern ehCacheFilterPattern;
 
   @Override
-  public void start(Settings settings, Properties properties) throws CacheException {
+  public void start(SessionFactoryOptions sessionFactoryOptions, Properties properties) throws CacheException {
     memcachedRegionFactory = new MemcachedRegionFactory();
-    memcachedRegionFactory.start(settings, properties);
+    memcachedRegionFactory.start(sessionFactoryOptions, properties);
 
     ehCacheRegionFactory = new EhCacheRegionFactory();
-    ehCacheRegionFactory.start(settings, properties);
+    ehCacheRegionFactory.start(sessionFactoryOptions, properties);
 
     String ehCacheRegionFilter = properties.getProperty(CONFIG_EHCACHE_REGION_FILTER);
     if (ehCacheRegionFilter != null && !ehCacheRegionFilter.isEmpty()) {
