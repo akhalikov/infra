@@ -6,7 +6,7 @@
 * logging: basic logging examples
 
 ### hibernate
-Basic examples of setting up and using Hibernate (v.5), l2-cache, event listeners, etc.
+Basic examples of setting up and using Hibernate (v.5), l2-cache, transactions, event listeners, etc.
 
 #### hello-hibernate
 

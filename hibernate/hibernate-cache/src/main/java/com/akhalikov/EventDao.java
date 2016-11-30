@@ -4,10 +4,11 @@ import com.akhalikov.entity.Event;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class EventDao {
   private final SessionFactory sessionFactory;
 
@@ -16,25 +17,17 @@ public class EventDao {
   }
 
   @SuppressWarnings("unchecked")
-  List<Event> getEvents() {
-    final Session session = sessionFactory.openSession();
-    Criteria criteria = session.createCriteria(Event.class);
+  public List<Event> getEvents() {
+    Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Event.class);
     return criteria.list();
   }
 
-  Event getEvent(int eventId) {
-    final Session session = sessionFactory.openSession();
-    Event event = (Event) session.get(Event.class, eventId);
-    session.close();
-    return event;
+  public Event getEvent(int eventId) {
+    final Session session = sessionFactory.getCurrentSession();
+    return (Event) session.get(Event.class, eventId);
   }
 
-  Event getEventWithCriteria(int eventId) {
-    final Session session = sessionFactory.openSession();
-    Criteria criteria = session.createCriteria(Event.class)
-        .add(Restrictions.naturalId().set("id", eventId));
-    Event event = (Event) criteria.uniqueResult();
-    session.close();
-    return event;
+  public void saveEvent(Event event) {
+    sessionFactory.getCurrentSession().saveOrUpdate(event);
   }
 }

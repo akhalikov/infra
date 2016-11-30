@@ -1,5 +1,6 @@
 package com.akhalikov;
 
+import com.akhalikov.entity.Event;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -14,7 +15,12 @@ public class App {
     jdbcTemplate.execute("INSERT INTO event (title, event_date) VALUES ('Hackathon', '2016-11-20 19:30:00')");
 
     EventDao eventDao = context.getBean(EventDao.class);
-    eventDao.getEvent(2);
-    eventDao.getEvent(2);
+    Event event = eventDao.getEvent(1);
+    System.out.println(event);
+
+    final Event newEvent = new Event();
+    newEvent.setTitle("Super event");
+    eventDao.saveEvent(newEvent);
+    System.out.println(newEvent);
   }
 }
