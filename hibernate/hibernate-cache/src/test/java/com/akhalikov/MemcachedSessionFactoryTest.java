@@ -4,5 +4,6 @@ import com.akhalikov.config.MemcachedHibernateConfig;
 import org.springframework.test.context.ContextConfiguration;
 
 @ContextConfiguration(classes = {MemcachedHibernateConfig.class})
-public class MemcachedSessionFactoryTest extends CacheTestBase {
+public class MemcachedSessionFactoryTest {
+
 }

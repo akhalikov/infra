@@ -14,14 +14,10 @@ import org.hibernate.cache.spi.TimestampsRegion;
 import org.hibernate.cache.spi.access.AccessType;
 
 import java.util.Properties;
-import java.util.regex.Pattern;
 
 public class MultiCacheRegionFactory implements RegionFactory {
-  private static final String CONFIG_EHCACHE_REGION_FILTER = "hibernate.ehcache.region_filter";
-
   private MemcachedRegionFactory memcachedRegionFactory;
   private EhCacheRegionFactory ehCacheRegionFactory;
-  private Pattern ehCacheFilterPattern;
 
   @Override
   public void start(SessionFactoryOptions sessionFactoryOptions, Properties properties) throws CacheException {
@@ -30,11 +26,6 @@ public class MultiCacheRegionFactory implements RegionFactory {
 
     ehCacheRegionFactory = new EhCacheRegionFactory();
     ehCacheRegionFactory.start(sessionFactoryOptions, properties);
-
-    String ehCacheRegionFilter = properties.getProperty(CONFIG_EHCACHE_REGION_FILTER);
-    if (ehCacheRegionFilter != null && !ehCacheRegionFilter.isEmpty()) {
-      ehCacheFilterPattern = Pattern.compile(ehCacheRegionFilter);
-    }
   }
 
   @Override
@@ -60,7 +51,7 @@ public class MultiCacheRegionFactory implements RegionFactory {
 
   @Override
   public EntityRegion buildEntityRegion(String regionName, Properties properties, CacheDataDescription metadata) throws CacheException {
-    if (ehCacheFilterPattern.matcher(regionName).matches()) {
+    if (isEhCacheRegion(regionName)) {
       return ehCacheRegionFactory.buildEntityRegion(regionName, properties, metadata);
     }
     return memcachedRegionFactory.buildEntityRegion(regionName, properties, metadata);
@@ -68,7 +59,7 @@ public class MultiCacheRegionFactory implements RegionFactory {
 
   @Override
   public NaturalIdRegion buildNaturalIdRegion(String regionName, Properties properties, CacheDataDescription metadata) throws CacheException {
-    if (ehCacheFilterPattern.matcher(regionName).matches()) {
+    if (isEhCacheRegion(regionName)) {
       return ehCacheRegionFactory.buildNaturalIdRegion(regionName, properties, metadata);
     }
     return memcachedRegionFactory.buildNaturalIdRegion(regionName, properties, metadata);
@@ -76,7 +67,7 @@ public class MultiCacheRegionFactory implements RegionFactory {
 
   @Override
   public CollectionRegion buildCollectionRegion(String regionName, Properties properties, CacheDataDescription metadata) throws CacheException {
-    if (ehCacheFilterPattern.matcher(regionName).matches()) {
+    if (isEhCacheRegion(regionName)) {
       return ehCacheRegionFactory.buildCollectionRegion(regionName, properties, metadata);
     }
     return memcachedRegionFactory.buildCollectionRegion(regionName, properties, metadata);
@@ -84,7 +75,7 @@ public class MultiCacheRegionFactory implements RegionFactory {
 
   @Override
   public QueryResultsRegion buildQueryResultsRegion(String regionName, Properties properties) throws CacheException {
-    if (ehCacheFilterPattern.matcher(regionName).matches()) {
+    if (isEhCacheRegion(regionName)) {
       return ehCacheRegionFactory.buildQueryResultsRegion(regionName, properties);
     }
     return memcachedRegionFactory.buildQueryResultsRegion(regionName, properties);
@@ -92,9 +83,13 @@ public class MultiCacheRegionFactory implements RegionFactory {
 
   @Override
   public TimestampsRegion buildTimestampsRegion(String regionName, Properties properties) throws CacheException {
-    if (ehCacheFilterPattern.matcher(regionName).matches()) {
+    if (isEhCacheRegion(regionName)) {
       return ehCacheRegionFactory.buildTimestampsRegion(regionName, properties);
     }
     return memcachedRegionFactory.buildTimestampsRegion(regionName, properties);
+  }
+
+  private boolean isEhCacheRegion(String regionName) {
+    return CacheRegion.LOCAL.equalsIgnoreCase(regionName);
   }
 }

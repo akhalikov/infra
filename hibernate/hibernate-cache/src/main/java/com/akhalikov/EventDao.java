@@ -8,8 +8,11 @@ import javax.inject.Inject;
 import java.util.List;
 
 public class EventDao {
-  @Inject
   private SessionFactory sessionFactory;
+
+  EventDao(SessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
+  }
 
   List<Event> getEvents() {
     try (Session session = sessionFactory.openSession()) {
