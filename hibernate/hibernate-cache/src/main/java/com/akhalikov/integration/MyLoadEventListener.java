@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.event.internal.DefaultLoadEventListener;
 import org.hibernate.event.spi.LoadEvent;
 
+@SuppressWarnings("unused")
 public class MyLoadEventListener extends DefaultLoadEventListener {
   @Override
   public void onLoad(LoadEvent event, LoadType loadType) throws HibernateException {
