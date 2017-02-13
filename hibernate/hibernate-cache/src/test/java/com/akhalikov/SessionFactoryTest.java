@@ -3,7 +3,6 @@ package com.akhalikov;
 import com.akhalikov.entity.Event;
 import org.hibernate.Cache;
 import org.hibernate.SessionFactory;
-import org.hibernate.stat.Statistics;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import static org.testng.Assert.assertEquals;
@@ -19,16 +18,11 @@ import java.util.List;
 public class SessionFactoryTest extends TestBase {
   private static SessionFactory sessionFactory;
   private static EventDao eventDao;
-  private static Statistics statistics;
 
   @BeforeClass
   public static void setUpClass() throws Exception {
     sessionFactory = createSessionFactory(dataSource);
     eventDao = new EventDao(sessionFactory);
-
-    statistics = sessionFactory.getStatistics();
-    statistics.setStatisticsEnabled(true);
-    statistics.clear();
   }
 
   @BeforeMethod
@@ -55,7 +49,6 @@ public class SessionFactoryTest extends TestBase {
     eventDao.getEvent(eventId);
     eventDao.getEvent(eventId);
 
-    assertEquals(statistics.getSecondLevelCacheHitCount(), 0);
 
     Cache cache = sessionFactory.getCache();
     assertFalse(cache.containsEntity(Event.class, eventId));

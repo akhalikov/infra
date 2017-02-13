@@ -1,8 +1,9 @@
 package com.akhalikov;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.stat.Statistics;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
-import org.testng.annotations.BeforeMethod;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -36,5 +37,12 @@ abstract class TestBase {
     dataSource.setConnectionProperties(properties);
 
     return dataSource;
+  }
+
+  static Statistics createStatistics(SessionFactory sessionFactory) {
+    Statistics statistics = sessionFactory.getStatistics();
+    statistics.setStatisticsEnabled(true);
+    statistics.clear();
+    return statistics;
   }
 }

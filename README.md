@@ -10,15 +10,15 @@ Basic examples of setting up and using Hibernate (v.5), l2-cache, transactions, 
 
 #### hello-hibernate
 
-* Bootstrap Hibernate5 SessionFactory (native)
+* Hibernate 5 native bootstrap
 * Use annotations to provide mapping information
 * Use the Hibernate native APIs for transactions
 
 #### hibernate-cache
-* Examples of bootstrapping Hibernate SessionFactory
+* Hibernate 5 native bootstrap
 * Example of using HSQLDB in-memory database for unit-tests
-* Hibernate and Memcached as L2-cache (https://github.com/mihaicostin/hibernate-l2-memcached)
 * Hibernate and EhCache as L2-cache
+* Hibernate and Memcached as L2-cache (https://github.com/mihaicostin/hibernate-l2-memcached)
 * Hibernate with multiple L2-caches (EhCache & Memcached)
 
 ### spring-examples
