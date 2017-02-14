@@ -1,9 +1,8 @@
 package com.akhalikov;
 
-import com.akhalikov.core.SessionFactoryBean;
 import com.akhalikov.entity.Event;
-import org.hibernate.Cache;
 import org.hibernate.SessionFactory;
+import org.hibernate.stat.Statistics;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -16,10 +15,18 @@ import java.util.List;
 public class SessionFactoryTest extends TestBase {
   private static SessionFactory sessionFactory;
   private static EventDao eventDao;
+  private static Statistics statistics;
+
 
   @BeforeClass
   public static void setUpClass() throws Exception {
+    hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", "false");
+    hibernateProperties.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.internal.NoCacheProvider");
+
     sessionFactory = createSessionFactory();
+
+    statistics = createStatistics(sessionFactory);
+
     eventDao = new EventDao(sessionFactory);
   }
 
@@ -47,18 +54,15 @@ public class SessionFactoryTest extends TestBase {
     eventDao.getEvent(eventId);
     eventDao.getEvent(eventId);
 
-    Cache cache = sessionFactory.getCache();
-    assertFalse(cache.containsEntity(Event.class, eventId));
+    assertFalse(sessionFactory.getCache().containsEntity(Event.class, eventId));
+
+    assertStatistics(statistics, 0, 0, 0);
   }
 
   private static SessionFactory createSessionFactory() throws Exception {
-    final LocalSessionFactoryBean sessionFactoryBean = new SessionFactoryBean();
-    sessionFactoryBean.setDataSource(dataSource);
-    sessionFactoryBean.setHibernateProperties(hibernateProperties);
-
+    LocalSessionFactoryBean sessionFactoryBean = createBootstrapSessionFactoryBean();
     sessionFactoryBean.setAnnotatedClasses(Event.class);
     sessionFactoryBean.afterPropertiesSet();
-
     return sessionFactoryBean.getObject();
   }
 }

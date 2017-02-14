@@ -2,6 +2,7 @@ package com.akhalikov.entity;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Cacheable;

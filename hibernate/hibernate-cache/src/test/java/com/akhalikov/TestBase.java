@@ -1,10 +1,13 @@
 package com.akhalikov;
 
+import com.akhalikov.core.BootstrapSessionFactoryBean;
 import com.akhalikov.util.PropertiesUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import static org.testng.Assert.assertEquals;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -46,5 +49,18 @@ abstract class TestBase {
     statistics.setStatisticsEnabled(true);
     statistics.clear();
     return statistics;
+  }
+
+  static LocalSessionFactoryBean createBootstrapSessionFactoryBean() {
+    LocalSessionFactoryBean sessionFactoryBean = new BootstrapSessionFactoryBean();
+    sessionFactoryBean.setDataSource(dataSource);
+    sessionFactoryBean.setHibernateProperties(hibernateProperties);
+    return sessionFactoryBean;
+  }
+
+  static void assertStatistics(Statistics statistics, int puts, int hits, int misses) {
+    assertEquals(statistics.getSecondLevelCachePutCount(), puts);
+    assertEquals(statistics.getSecondLevelCacheHitCount(), hits);
+    assertEquals(statistics.getSecondLevelCacheMissCount(), misses);
   }
 }

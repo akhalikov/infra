@@ -1,29 +1,30 @@
 package com.akhalikov;
 
-import com.akhalikov.core.SessionFactoryBean;
 import com.akhalikov.entity.Event;
-import org.hibernate.Cache;
 import org.hibernate.SessionFactory;
+import org.hibernate.internal.CacheImpl;
 import org.hibernate.stat.Statistics;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import javax.sql.DataSource;
-import java.io.IOException;
-
-public class EhCacheSessionFactoryTest extends TestBase {
+public class EhCacheTest extends TestBase {
   private static SessionFactory sessionFactory;
   private static EventDao eventDao;
   private static Statistics statistics;
 
   @BeforeClass
   public void setUp() throws Exception {
-    sessionFactory = createSessionFactory(dataSource);
+    hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", "true");
+    hibernateProperties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
+    hibernateProperties.setProperty("net.sf.ehcache.configurationResourceName", "ehcache.xml");
+
+    sessionFactory = createSessionFactory();
+
     statistics = createStatistics(sessionFactory);
+
     eventDao = new EventDao(sessionFactory);
   }
 
@@ -33,28 +34,26 @@ public class EhCacheSessionFactoryTest extends TestBase {
 
     final int eventId = 1;
 
-    eventDao.getEvent(eventId);
+    assertStatistics(statistics, 0, 0, 0);
+
     eventDao.getEvent(eventId);
     eventDao.getEvent(eventId);
 
-    assertEquals(statistics.getSecondLevelCacheMissCount(), 1);
-    assertEquals(statistics.getSecondLevelCacheHitCount(), 2);
+    assertStatistics(statistics, 1, 1, 1);
 
-    Cache cache = sessionFactory.getCache();
+    CacheImpl cache = (CacheImpl) sessionFactory.getCache();
+
     assertTrue(cache.containsEntity(Event.class, eventId));
 
     eventDao.getEvent(0);
 
-    assertEquals(statistics.getSecondLevelCacheMissCount(), 2);
+    assertStatistics(statistics, 1, 1, 2);
   }
 
-  private static SessionFactory createSessionFactory(final DataSource dataSource) throws IOException {
-    final LocalSessionFactoryBean sessionFactoryBean = new SessionFactoryBean();
-    sessionFactoryBean.setDataSource(dataSource);
-
-    sessionFactoryBean.setConfigLocation(new ClassPathResource("ehcache/hibernate.cfg.xml"));
+  private static SessionFactory createSessionFactory() throws Exception {
+    LocalSessionFactoryBean sessionFactoryBean = createBootstrapSessionFactoryBean();
+    sessionFactoryBean.setAnnotatedClasses(Event.class);
     sessionFactoryBean.afterPropertiesSet();
-
     return sessionFactoryBean.getObject();
   }
 }
