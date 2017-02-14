@@ -59,8 +59,8 @@ abstract class TestBase {
   }
 
   static void assertStatistics(Statistics statistics, int puts, int hits, int misses) {
-    assertEquals(statistics.getSecondLevelCachePutCount(), puts);
-    assertEquals(statistics.getSecondLevelCacheHitCount(), hits);
-    assertEquals(statistics.getSecondLevelCacheMissCount(), misses);
+    assertEquals(statistics.getSecondLevelCachePutCount(), puts, "puts");
+    assertEquals(statistics.getSecondLevelCacheHitCount(), hits, "hits");
+    assertEquals(statistics.getSecondLevelCacheMissCount(), misses, "misses");
   }
 }

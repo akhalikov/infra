@@ -52,7 +52,7 @@ public class EhCacheTest extends TestBase {
 
   private static SessionFactory createSessionFactory() throws Exception {
     LocalSessionFactoryBean sessionFactoryBean = createBootstrapSessionFactoryBean();
-    sessionFactoryBean.setAnnotatedClasses(Event.class);
+    sessionFactoryBean.setPackagesToScan("com.akhalikov.entity");
     sessionFactoryBean.afterPropertiesSet();
     return sessionFactoryBean.getObject();
   }

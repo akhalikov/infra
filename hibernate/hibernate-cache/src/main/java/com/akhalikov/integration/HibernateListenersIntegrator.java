@@ -8,7 +8,8 @@ import org.hibernate.integrator.spi.Integrator;
 import org.hibernate.service.spi.SessionFactoryServiceRegistry;
 
 @SuppressWarnings("unchecked")
-public class EventListenersIntegrator implements Integrator {
+public class HibernateListenersIntegrator implements Integrator {
+
   @Override
   public void integrate(Metadata metadata,
                         SessionFactoryImplementor sessionFactory,

@@ -3,8 +3,10 @@ package com.akhalikov;
 import com.akhalikov.core.MultiCacheBootstrapSessionFactoryBean;
 import com.akhalikov.entity.Event;
 import org.hibernate.SessionFactory;
+import org.hibernate.internal.CacheImpl;
 import org.hibernate.stat.Statistics;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import static org.testng.Assert.assertFalse;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -16,6 +18,7 @@ public class MultiCacheTest extends TestBase {
   @BeforeClass
   public void setUp() throws Exception {
     hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", "true");
+    hibernateProperties.setProperty("hibernate.memcached.cacheTimeSeconds", "1");
 
     sessionFactory = createSessionFactory();
 
@@ -32,6 +35,9 @@ public class MultiCacheTest extends TestBase {
 
     final int eventId = 1;
 
+    CacheImpl cache = (CacheImpl) sessionFactory.getCache();
+    assertFalse(cache.containsEntity(Event.class, eventId), "cache is not empty");
+
     eventDao.getEvent(eventId);
     eventDao.getEvent(eventId);
 
@@ -46,7 +52,7 @@ public class MultiCacheTest extends TestBase {
     LocalSessionFactoryBean sessionFactoryBean = new MultiCacheBootstrapSessionFactoryBean();
     sessionFactoryBean.setDataSource(dataSource);
     sessionFactoryBean.setHibernateProperties(hibernateProperties);
-    sessionFactoryBean.setAnnotatedClasses(Event.class);
+    sessionFactoryBean.setPackagesToScan("com.akhalikov.entity");
     sessionFactoryBean.afterPropertiesSet();
     return sessionFactoryBean.getObject();
   }
