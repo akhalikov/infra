@@ -1,5 +1,6 @@
 package com.akhalikov;
 
+import com.akhalikov.util.PropertiesUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,6 +11,7 @@ import java.util.Properties;
 
 abstract class TestBase {
   static DataSource dataSource = createDataSource();
+  static Properties hibernateProperties = PropertiesUtils.fromFile("hibernate.properties");
 
   void addTestData() {
     final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

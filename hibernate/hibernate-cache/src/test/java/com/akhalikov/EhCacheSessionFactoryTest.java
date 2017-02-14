@@ -1,5 +1,6 @@
 package com.akhalikov;
 
+import com.akhalikov.core.SessionFactoryBean;
 import com.akhalikov.entity.Event;
 import org.hibernate.Cache;
 import org.hibernate.SessionFactory;
@@ -48,7 +49,7 @@ public class EhCacheSessionFactoryTest extends TestBase {
   }
 
   private static SessionFactory createSessionFactory(final DataSource dataSource) throws IOException {
-    final LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+    final LocalSessionFactoryBean sessionFactoryBean = new SessionFactoryBean();
     sessionFactoryBean.setDataSource(dataSource);
 
     sessionFactoryBean.setConfigLocation(new ClassPathResource("ehcache/hibernate.cfg.xml"));

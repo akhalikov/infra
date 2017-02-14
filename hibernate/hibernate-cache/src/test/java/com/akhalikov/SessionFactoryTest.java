@@ -1,10 +1,9 @@
 package com.akhalikov;
 
-import com.akhalikov.core.MySessionFactoryBean;
+import com.akhalikov.core.SessionFactoryBean;
 import com.akhalikov.entity.Event;
 import org.hibernate.Cache;
 import org.hibernate.SessionFactory;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -12,8 +11,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.List;
 
 public class SessionFactoryTest extends TestBase {
@@ -22,7 +19,7 @@ public class SessionFactoryTest extends TestBase {
 
   @BeforeClass
   public static void setUpClass() throws Exception {
-    sessionFactory = createSessionFactory(dataSource);
+    sessionFactory = createSessionFactory();
     eventDao = new EventDao(sessionFactory);
   }
 
@@ -54,11 +51,12 @@ public class SessionFactoryTest extends TestBase {
     assertFalse(cache.containsEntity(Event.class, eventId));
   }
 
-  private static SessionFactory createSessionFactory(final DataSource dataSource) throws IOException {
-    final LocalSessionFactoryBean sessionFactoryBean = new MySessionFactoryBean();
+  private static SessionFactory createSessionFactory() throws Exception {
+    final LocalSessionFactoryBean sessionFactoryBean = new SessionFactoryBean();
     sessionFactoryBean.setDataSource(dataSource);
-    sessionFactoryBean.setConfigLocation(new ClassPathResource("hibernate.cfg.xml"));
+    sessionFactoryBean.setHibernateProperties(hibernateProperties);
 
+    sessionFactoryBean.setAnnotatedClasses(Event.class);
     sessionFactoryBean.afterPropertiesSet();
 
     return sessionFactoryBean.getObject();

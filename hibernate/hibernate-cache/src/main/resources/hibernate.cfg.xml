@@ -5,25 +5,13 @@
 <hibernate-configuration>
 
     <session-factory>
-        <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
 
-        <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
-
-        <!-- Disable the second-level cache  -->
+        <!-- Disable the second-level cache -->
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
         <property name="cache.use_second_level_cache">false</property>
+
+        <!-- Disable query cache -->
         <property name="cache.use_query_cache">false</property>
-
-        <!-- Echo all executed SQL to stdout -->
-        <property name="show_sql">true</property>
-
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
-
-        <!-- Names the annotated entity class -->
-        <mapping class="com.akhalikov.entity.Event"/>
 
     </session-factory>
 
