@@ -5,6 +5,7 @@ import com.akhalikov.entity.Event;
 import org.hibernate.SessionFactory;
 import org.hibernate.internal.CacheImpl;
 import org.hibernate.stat.Statistics;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import static org.testng.Assert.assertFalse;
 import org.testng.annotations.BeforeClass;
@@ -53,6 +54,9 @@ public class MultiCacheTest extends TestBase {
     sessionFactoryBean.setDataSource(dataSource);
     sessionFactoryBean.setHibernateProperties(hibernateProperties);
     sessionFactoryBean.setPackagesToScan("com.akhalikov.entity");
+
+    //sessionFactoryBean.setConfigLocation(new ClassPathResource("hibernate.cfg.xml"));
+
     sessionFactoryBean.afterPropertiesSet();
     return sessionFactoryBean.getObject();
   }
