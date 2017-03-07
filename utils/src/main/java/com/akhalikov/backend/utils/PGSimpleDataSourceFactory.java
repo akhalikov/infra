@@ -4,7 +4,7 @@ import org.postgresql.ds.PGSimpleDataSource;
 
 import java.util.Properties;
 
-public class DataSourceFactory {
+public class PGSimpleDataSourceFactory {
 
   public static PGSimpleDataSource createPGSimpleDataSource(Properties properties) {
     return createPGSimpleDataSource(
@@ -22,6 +22,6 @@ public class DataSourceFactory {
     return dataSource;
   }
 
-  private DataSourceFactory() {
+  private PGSimpleDataSourceFactory() {
   }
 }
