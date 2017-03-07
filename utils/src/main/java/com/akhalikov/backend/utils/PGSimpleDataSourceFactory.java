@@ -2,7 +2,10 @@ package com.akhalikov.backend.utils;
 
 import org.postgresql.ds.PGSimpleDataSource;
 
+import java.util.Objects;
 import java.util.Properties;
+
+import static java.util.Objects.requireNonNull;
 
 public class PGSimpleDataSourceFactory {
 
@@ -14,7 +17,7 @@ public class PGSimpleDataSourceFactory {
     );
   }
 
-  public static PGSimpleDataSource createPGSimpleDataSource(String url, String user, String password) {
+  static PGSimpleDataSource createPGSimpleDataSource(String url, String user, String password) {
     PGSimpleDataSource dataSource = new PGSimpleDataSource();
     dataSource.setUrl(url);
     dataSource.setUser(user);

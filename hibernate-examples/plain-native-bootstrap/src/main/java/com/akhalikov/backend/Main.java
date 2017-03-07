@@ -13,8 +13,12 @@ import java.util.Properties;
 public class Main {
 
   public static void main(String[] args) throws IOException {
+    System.out.println("Hibernate native bootstrap");
+
     Properties properties = PropertiesFactory.load();
 
+    // problem: the application should have only one SF per database
+    // as it is very expensive to create
     SessionFactory sessionFactory = createSessionFactory(properties);
 
     UserHibernateDao userDao = new UserHibernateDao(sessionFactory);
