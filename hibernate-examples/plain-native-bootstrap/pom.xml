@@ -8,12 +8,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>postgres-native-bootstrap</artifactId>
+    <artifactId>plain-native-bootstrap</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.akhalikov.backend</groupId>
             <artifactId>utils</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

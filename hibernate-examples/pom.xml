@@ -9,7 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>postgres-native-bootstrap</module>
+        <module>plain-native-bootstrap</module>
+        <module>spring-native-bootstrap</module>
         <module>hibernate-cache</module>
     </modules>
 
@@ -54,9 +55,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.akhalikov.backend</groupId>
-                <artifactId>utils</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.0.0</version>
             </dependency>
 
             <dependency>

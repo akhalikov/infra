@@ -3,6 +3,8 @@ package com.akhalikov.backend.users;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,15 +15,23 @@ public class User {     // it does not implement Serializable
                         // because we do not plan to use it remotely as detached object.
 
   @Id                   // The identifier attribute
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
+  @Column(name = "first_name")
   private String firstName;
 
+  @Column(name = "last_name")
   private String lastName;
 
   // constructor for Hibernate
   // the entity class must have a public, protected or package-private no-argument constructor
   User() {
+  }
+
+  public User(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public Integer getId() {
