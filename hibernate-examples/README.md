@@ -1,10 +1,15 @@
 ### hibernate
 Basic examples of setting up and using Hibernate (v.5), l2-cache, transactions, event listeners, etc.
 
-#### postgres-native-bootstrap
+#### plain-native-bootstrap
 
 * Hibernate 5 native bootstrap for PostgreSQL database
 * Use the Hibernate native APIs for transactions
+
+#### spring-native-bootstrap
+
+* Hibernate 5 native bootstrap with Spring for PostgreSQL database
+* Use Spring's LocalSessionFactoryBean and transactions
 
 #### hibernate-cache
 * Hibernate 5 native bootstrap
