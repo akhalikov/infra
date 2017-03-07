@@ -9,10 +9,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>business-logic</module>
+        <module>cassandra-java-client</module>
+        <module>jdbc-examples</module>
         <module>jetty-server</module>
         <module>jersey-service-example</module>
-        <module>cassandra-java-client</module>
         <module>spring-examples</module>
     </modules>
 
