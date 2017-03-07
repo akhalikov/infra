@@ -1,14 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.akhalikov</groupId>
-    <artifactId>backend</artifactId>
+    <groupId>com.akhalikov.backend</groupId>
+    <artifactId>parent-pom</artifactId>
     <packaging>pom</packaging>
-    <version>1</version>
+    <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>business-logic</module>
         <module>jetty-server</module>
         <module>jersey-service-example</module>
         <module>cassandra-java-client</module>
@@ -16,39 +17,46 @@
     </modules>
 
     <properties>
-        <java.version>1.8</java.version>
         <slf4j.version>1.7.12</slf4j.version>
     </properties>
 
     <build>
         <pluginManagement>
             <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.5.1</version>
-                    <inherited>true</inherited>
+                    <version>3.3</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.2.1</version>
+                    <version>1.5.0</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.4.0</version>
-                </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
 
     <dependencyManagement>
         <dependencies>
+
             <!--Testing-->
             <dependency>
                 <groupId>junit</groupId>
@@ -63,21 +71,25 @@
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.1.3</version>
+                <version>1.1.7</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
