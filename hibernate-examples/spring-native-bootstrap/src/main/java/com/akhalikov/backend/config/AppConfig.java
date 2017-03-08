@@ -2,11 +2,11 @@ package com.akhalikov.backend.config;
 
 import com.akhalikov.backend.users.UserDao;
 import com.akhalikov.backend.users.UserSpringDao;
-import com.akhalikov.backend.utils.PGSimpleDataSourceFactory;
 import com.akhalikov.backend.utils.PropertiesFactory;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -18,13 +18,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@Import(DataSourceContext.class)
 public class AppConfig {
-
-  @Bean
-  DataSource dataSource() {
-    return PGSimpleDataSourceFactory
-      .createPGSimpleDataSource(PropertiesFactory.load());
-  }
 
   @Bean
   LocalSessionFactoryBean sessionFactory(DataSource dataSource) {

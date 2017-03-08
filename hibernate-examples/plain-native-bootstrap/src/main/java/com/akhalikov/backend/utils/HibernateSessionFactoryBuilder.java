@@ -13,7 +13,7 @@ import java.util.Properties;
 public class HibernateSessionFactoryBuilder {
 
   public static SessionFactory createSessionFactory(Properties properties) {
-    DataSource dataSource = PGSimpleDataSourceFactory.createPGSimpleDataSource(properties);
+    DataSource dataSource = DataSourceFactory.createPGSimpleDataSource(properties);
 
     StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder()
         .configure("hibernate.cfg.xml")
