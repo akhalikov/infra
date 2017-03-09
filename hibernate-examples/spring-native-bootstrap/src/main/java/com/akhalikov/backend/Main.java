@@ -14,7 +14,7 @@ public class Main {
 
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-    UserDao userDao = context.getBean("userDao", UserDao.class);
+    UserSpringDao userDao = context.getBean("userDao", UserSpringDao.class);
 
     System.out.println("users in db: " + userDao.getAll());
 
@@ -32,6 +32,8 @@ public class Main {
     userDao.delete(user1.getId());
     userDao.delete(user2.getId());
     userDao.delete(user3.getId());
+
+    userDao.insertWithReadonlyTransaction(new User("Mark", "Antony"));
 
     System.out.println("users in db: " + userDao.getAll());
   }

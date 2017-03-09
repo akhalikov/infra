@@ -1,12 +1,13 @@
 package com.akhalikov.backend.config;
 
-import com.akhalikov.backend.users.UserDao;
+import com.akhalikov.backend.proxy.ProxyDataSource;
 import com.akhalikov.backend.users.UserSpringDao;
+import com.akhalikov.backend.utils.DataSourceFactory;
 import com.akhalikov.backend.utils.PropertiesFactory;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -18,8 +19,13 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@Import(DataSourceContext.class)
 public class AppConfig {
+
+  @Bean
+  DataSource dataSource() throws Exception {
+    ComboPooledDataSource dataSource = DataSourceFactory.createC3P0DataSource(PropertiesFactory.load());
+    return new ProxyDataSource(dataSource);
+  }
 
   @Bean
   LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
@@ -41,7 +47,7 @@ public class AppConfig {
   }
 
   @Bean
-  UserDao userDao(SessionFactory sessionFactory) {
+  UserSpringDao userDao(SessionFactory sessionFactory) {
     return new UserSpringDao(sessionFactory);
   }
 }

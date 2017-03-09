@@ -17,7 +17,7 @@ public class HibernateSessionFactoryBuilder {
 
     StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder()
         .configure("hibernate.cfg.xml")
-        .applySetting(AvailableSettings.TRANSACTION_COORDINATOR_STRATEGY, "jdbc") // "jdbc" is the default, but for explicitness
+        .applySetting(AvailableSettings.TRANSACTION_COORDINATOR_STRATEGY, "proxy") // "proxy" is the default, but for explicitness
         .applySetting(AvailableSettings.DATASOURCE, dataSource) // it seems that better way is to use ConnectionProvider
         .build();
 

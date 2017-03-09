@@ -28,7 +28,7 @@ abstract class TestBase {
     SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
 
     dataSource.setDriverClass(org.hsqldb.jdbc.JDBCDriver.class);
-    dataSource.setUrl("jdbc:hsqldb:mem");
+    dataSource.setUrl("proxy:hsqldb:mem");
 
     final Properties properties = new Properties();
     properties.setProperty("user", "sa");
