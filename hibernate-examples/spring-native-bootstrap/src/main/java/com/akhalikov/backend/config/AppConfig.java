@@ -1,6 +1,7 @@
 package com.akhalikov.backend.config;
 
 import com.akhalikov.backend.proxy.ProxyDataSource;
+import com.akhalikov.backend.users.UserService;
 import com.akhalikov.backend.users.UserSpringDao;
 import com.akhalikov.backend.utils.DataSourceFactory;
 import com.akhalikov.backend.utils.PropertiesFactory;
@@ -49,5 +50,10 @@ public class AppConfig {
   @Bean
   UserSpringDao userDao(SessionFactory sessionFactory) {
     return new UserSpringDao(sessionFactory);
+  }
+
+  @Bean
+  UserService userService(UserSpringDao userSpringDao) {
+    return new UserService(userSpringDao);
   }
 }

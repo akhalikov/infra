@@ -1,5 +1,7 @@
 package com.akhalikov.backend.proxy;
 
+import org.slf4j.LoggerFactory;
+
 import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -8,7 +10,10 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
 public class ProxyDataSource implements DataSource {
+  private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ProxyDataSource.class);
+
   private final DataSource delegate;
+  private final String dataSourceName = "master";
 
   public ProxyDataSource(DataSource delegate) {
     this.delegate = delegate;
@@ -16,12 +21,16 @@ public class ProxyDataSource implements DataSource {
 
   @Override
   public Connection getConnection() throws SQLException {
-    return new ProxyConnection(delegate.getConnection());
+    Connection connection = delegate.getConnection();
+    LOGGER.info("Got connection: {}, readOnly={}", connection, connection.isReadOnly());
+    return new ProxyConnection(connection, dataSourceName);
   }
 
   @Override
   public Connection getConnection(String username, String password) throws SQLException {
-    return new ProxyConnection(delegate.getConnection(username, password));
+    Connection connection = delegate.getConnection(username, password);
+    LOGGER.info("Got connection: {}, readOnly={}", connection, connection.isReadOnly());
+    return new ProxyConnection(connection, dataSourceName);
   }
 
   @Override
