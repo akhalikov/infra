@@ -1,6 +1,5 @@
 package com.akhalikov.backend.utils;
 
-import com.mchange.v2.c3p0.C3P0Registry;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.postgresql.ds.PGSimpleDataSource;
 
@@ -12,11 +11,16 @@ import java.util.Properties;
 public class DataSourceFactory {
 
   public static ComboPooledDataSource createC3P0DataSource(Properties properties) throws Exception {
+
     ComboPooledDataSource ds = new ComboPooledDataSource();
     ds.setJdbcUrl(properties.getProperty("jdbc.url"));
     ds.setUser(properties.getProperty("jdbc.user"));
     ds.setPassword(properties.getProperty("jdbc.password"));
-    ds.setDriverClass(properties.getProperty("jdbc.driverClass"));
+
+    if (properties.getProperty("jdbc.driverClass") != null) {
+      ds.setDriverClass(properties.getProperty("jdbc.driverClass"));
+    }
+
     ds.setMinPoolSize(1);
     ds.setMaxPoolSize(5);
     ds.setAcquireIncrement(1);
@@ -44,7 +48,7 @@ public class DataSourceFactory {
     connection.close();
   }
 
-  public static PGSimpleDataSource createPGSimpleDataSource(Properties properties) {
+  public static PGSimpleDataSource createPGSimpleDataSource(Properties properties) throws SQLException {
     return createPGSimpleDataSource(
         properties.getProperty("jdbc.url"),
         properties.getProperty("jdbc.user"),
@@ -52,12 +56,13 @@ public class DataSourceFactory {
     );
   }
 
-  static PGSimpleDataSource createPGSimpleDataSource(String url, String user, String password) {
-    PGSimpleDataSource dataSource = new PGSimpleDataSource();
-    dataSource.setUrl(url);
-    dataSource.setUser(user);
-    dataSource.setPassword(password);
-    return dataSource;
+  static PGSimpleDataSource createPGSimpleDataSource(String url, String user, String password) throws SQLException {
+    PGSimpleDataSource ds = new PGSimpleDataSource();
+    ds.setUrl(url);
+    ds.setUser(user);
+    ds.setPassword(password);
+    checkDataSource(ds);
+    return ds;
   }
 
   private DataSourceFactory() {

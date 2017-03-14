@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Main {
-  public static void main(String[] args) throws IOException {
+
+  public static void main(String[] args) throws Exception {
     final Properties properties = PropertiesFactory.load();
 
     final DataSource dataSource = DataSourceFactory.createPGSimpleDataSource(properties);

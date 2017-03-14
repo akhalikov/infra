@@ -6,18 +6,20 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
+import sun.security.x509.AVA;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class HibernateSessionFactoryBuilder {
 
-  public static SessionFactory createSessionFactory(Properties properties) {
+  public static SessionFactory createSessionFactory(Properties properties) throws SQLException {
     DataSource dataSource = DataSourceFactory.createPGSimpleDataSource(properties);
 
     StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder()
         .configure("hibernate.cfg.xml")
-        .applySetting(AvailableSettings.TRANSACTION_COORDINATOR_STRATEGY, "proxy") // "proxy" is the default, but for explicitness
+        //.applySetting(AvailableSettings.TRANSACTION_COORDINATOR_STRATEGY, "proxy") // "proxy" is the default, but for explicitness
         .applySetting(AvailableSettings.DATASOURCE, dataSource) // it seems that better way is to use ConnectionProvider
         .build();
 

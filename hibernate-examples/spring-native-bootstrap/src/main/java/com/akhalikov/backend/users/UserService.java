@@ -38,7 +38,7 @@ public class UserService {
     userDao.delete(user2.getId());
     userDao.delete(user3.getId());
 
-    userDao.insertWithReadonlyTransaction(new User("Mark", "Antony"));
+    // userDao.insertWithReadonlyTransaction(new User("Mark", "Antony"));
 
     LOGGER.info("Users in db: {}", userDao.getAll());
   }

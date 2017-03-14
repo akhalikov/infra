@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class Main {
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws Exception {
     System.out.println("Hibernate native bootstrap");
 
     Properties properties = PropertiesFactory.load();

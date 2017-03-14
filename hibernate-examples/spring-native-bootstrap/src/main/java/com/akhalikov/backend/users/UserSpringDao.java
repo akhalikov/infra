@@ -29,7 +29,7 @@ public class UserSpringDao {
     getSession().saveOrUpdate(user);
   }
 
-  // problem: postgres fails with error
+  // example of error: postgres fails with error
   // cannot execute DELETE in a read-only transaction
   @Transactional(readOnly = true)
   public void insertWithReadonlyTransaction(User user) {
