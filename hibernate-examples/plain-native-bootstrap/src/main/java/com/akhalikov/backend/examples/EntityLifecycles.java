@@ -4,7 +4,6 @@ import com.akhalikov.backend.users.User;
 import com.akhalikov.backend.utils.PropertiesFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import java.util.Properties;
 
