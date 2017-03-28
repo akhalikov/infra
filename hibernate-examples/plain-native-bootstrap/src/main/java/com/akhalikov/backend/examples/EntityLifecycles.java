@@ -1,19 +1,14 @@
 package com.akhalikov.backend.examples;
 
 import com.akhalikov.backend.users.User;
-import com.akhalikov.backend.utils.PropertiesFactory;
+import static com.akhalikov.backend.utils.HibernateSessionFactoryBuilder.createSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-import java.util.Properties;
-
-import static com.akhalikov.backend.utils.HibernateSessionFactoryBuilder.createSessionFactory;
 
 class EntityLifecycles {
 
   public static void main(String[] args) throws Exception {
-    Properties properties = PropertiesFactory.load();
-    SessionFactory sessionFactory = createSessionFactory(properties);
+    SessionFactory sessionFactory = createSessionFactory();
 
     int userId;
 
@@ -26,7 +21,7 @@ class EntityLifecycles {
       // state: managed, now we have user.id
       session.saveOrUpdate(user);
 
-      userId = user.getId();
+      userId = user.getId(); // not null
       System.out.println("user id = " + userId);
     }
 
@@ -42,6 +37,25 @@ class EntityLifecycles {
       user.setLastName("Monroe");
       session.flush();
       session.getTransaction().commit();
+
+      user = session.byId(User.class).load(userId);
+      assert "Monroe".equals(user.getLastName()); // last name is updated
+      System.out.println("user: " + user);
+
+      // clearing session makes user object detached
+      session.clear();
+
+      session.getTransaction().begin();
+      user.setLastName("Bobobo");
+
+      session.flush(); // expect that object will not sync, since it's detached
+      session.getTransaction().commit();
+
+      user = session.byId(User.class).load(userId);
+      System.out.println("detached user: " + user);
+      assert "Monroe".equals(user.getLastName()); // should have old value
     }
+
+    sessionFactory.close();
   }
 }
