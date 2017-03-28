@@ -51,9 +51,16 @@ class EntityLifecycles {
       session.flush(); // expect that object will not sync, since it's detached
       session.getTransaction().commit();
 
-      user = session.byId(User.class).load(userId);
-      System.out.println("detached user: " + user);
-      assert "Monroe".equals(user.getLastName()); // should have old value
+      User userFromDb = session.byId(User.class).load(userId);
+      System.out.println("user in db: " + userFromDb);
+      assert "Monroe".equals(userFromDb.getLastName()); // should have old value
+
+      // let's reattach our user to hibernate session
+      session.merge(user);
+
+      userFromDb = session.byId(User.class).load(userId);
+      assert "Bobobo".equals(userFromDb.getLastName());
+      System.out.println("user in db: " + userFromDb);
     }
 
     sessionFactory.close();
