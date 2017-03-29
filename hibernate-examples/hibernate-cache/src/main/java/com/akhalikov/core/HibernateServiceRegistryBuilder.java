@@ -14,7 +14,6 @@ class HibernateServiceRegistryBuilder {
   static BootstrapServiceRegistry createBootstrapServiceRegistry(ResourceLoader resourceLoader,
                                                                  Integrator... integrators) {
     BootstrapServiceRegistryBuilder bootstrapRegistryBuilder = new BootstrapServiceRegistryBuilder();
-    //bootstrapRegistryBuilder.applyClassLoader(resourceLoader.getClassLoader());
 
     for (Integrator integrator: integrators) {
       bootstrapRegistryBuilder.applyIntegrator(integrator);

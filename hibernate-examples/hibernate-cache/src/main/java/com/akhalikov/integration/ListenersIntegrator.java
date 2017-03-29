@@ -7,21 +7,20 @@ import org.hibernate.event.spi.EventType;
 import org.hibernate.integrator.spi.Integrator;
 import org.hibernate.service.spi.SessionFactoryServiceRegistry;
 
-@SuppressWarnings("unchecked")
-public class HibernateListenersIntegrator implements Integrator {
+public class ListenersIntegrator implements Integrator {
 
   @Override
   public void integrate(Metadata metadata,
                         SessionFactoryImplementor sessionFactory,
                         SessionFactoryServiceRegistry serviceRegistry) {
-    final EventListenerRegistry eventListenerRegistry = serviceRegistry.getService(EventListenerRegistry.class);
 
-    eventListenerRegistry.setListeners(EventType.LOAD, OverridingLoadEventListener.class);
+    EventListenerRegistry eventListenerRegistry = serviceRegistry.getService(EventListenerRegistry.class);
+
+    eventListenerRegistry.setListeners(EventType.LOAD, new OverridingLoadEventListener());
   }
 
   @Override
   public void disintegrate(SessionFactoryImplementor sessionFactory,
                            SessionFactoryServiceRegistry serviceRegistry) {
-    // doing nothing
   }
 }

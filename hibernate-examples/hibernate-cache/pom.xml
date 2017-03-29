@@ -11,11 +11,15 @@
     <artifactId>hibernate-cache</artifactId>
 
     <properties>
-        <spring.version>4.3.4.RELEASE</spring.version>
+        <spring.version>4.3.7.RELEASE</spring.version>
     </properties>
 
     <dependencies>
-        <!--Hibernate-->
+        <dependency>
+            <groupId>com.akhalikov.backend</groupId>
+            <artifactId>utils</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -47,7 +51,6 @@
             <artifactId>javax.inject</artifactId>
         </dependency>
 
-        <!--Spring Framework's core functionality-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -73,15 +76,30 @@
             <scope>test</scope>
         </dependency>
 
+        <!--Logging-->
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.3.3</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
 
         <dependency>

@@ -4,10 +4,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.event.internal.DefaultLoadEventListener;
 import org.hibernate.event.spi.LoadEvent;
 
-@SuppressWarnings("unused")
 public class OverridingLoadEventListener extends DefaultLoadEventListener {
+
   @Override
   public void onLoad(LoadEvent event, LoadType loadType) throws HibernateException {
+
     String entityClassName = event.getEntityClassName();
     Object entityId = event.getEntityId();
 
