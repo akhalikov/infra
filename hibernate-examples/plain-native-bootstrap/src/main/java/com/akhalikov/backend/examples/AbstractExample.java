@@ -1,17 +1,18 @@
 package com.akhalikov.backend.examples;
 
-import com.akhalikov.backend.users.UserHibernateDao;
 import com.akhalikov.backend.utils.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 abstract class AbstractExample {
+  static {
+    ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
+  }
+
   final SessionFactory sessionFactory;
-  final UserHibernateDao userDao;
 
   AbstractExample() {
     sessionFactory = HibernateUtils.createSessionFactory();
-    userDao = new UserHibernateDao(sessionFactory);
   }
 
   void go() {
