@@ -2,7 +2,7 @@ package com.akhalikov.backend;
 
 import com.akhalikov.backend.users.User;
 import com.akhalikov.backend.users.UserHibernateDao;
-import static com.akhalikov.backend.utils.HibernateSessionFactoryBuilder.createSessionFactory;
+import static com.akhalikov.backend.utils.HibernateUtils.createSessionFactory;
 import org.hibernate.SessionFactory;
 
 import java.util.List;

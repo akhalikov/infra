@@ -51,6 +51,10 @@ public class UserHibernateDao implements UserDao {
     }
   }
 
+  public void create(String firstName, String lastName) {
+    insert(new User(firstName, lastName));
+  }
+
   @Override
   public void delete(int userId) {
     try (Session session = sessionFactory.openSession()) {

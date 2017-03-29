@@ -1,15 +1,11 @@
 package com.akhalikov.backend.examples;
 
 import com.akhalikov.backend.users.User;
-import static com.akhalikov.backend.utils.HibernateSessionFactoryBuilder.createSessionFactory;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-class EntityLifecycles {
-
-  public static void main(String[] args) throws Exception {
-    SessionFactory sessionFactory = createSessionFactory();
-
+class EntityLifecycles extends AbstractExample {
+  @Override
+  void play() throws Exception {
     int userId;
 
     // session 1
@@ -62,7 +58,9 @@ class EntityLifecycles {
       assert "Bobobo".equals(userFromDb.getLastName());
       System.out.println("user in db: " + userFromDb);
     }
+  }
 
-    sessionFactory.close();
+  public static void main(String[] args) {
+    new EntityLifecycles().go();
   }
 }

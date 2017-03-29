@@ -5,12 +5,12 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.proxy.LazyInitializer;
 
-import java.sql.SQLException;
+import java.lang.reflect.Field;
 
-public class HibernateSessionFactoryBuilder {
-
-  public static SessionFactory createSessionFactory() throws SQLException {
+public class HibernateUtils {
+  public static SessionFactory createSessionFactory() {
     StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder()
         .build();
 
@@ -23,6 +23,16 @@ public class HibernateSessionFactoryBuilder {
         .build();
   }
 
-  private HibernateSessionFactoryBuilder() {
+  public static LazyInitializer getEntityProxy(Object entity) {
+    try {
+      Field proxyHandlerField = entity.getClass().getDeclaredField("handler");
+      proxyHandlerField.setAccessible(true);
+      return (LazyInitializer) proxyHandlerField.get(entity);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new RuntimeException("Cannot access field handler", e);
+    }
+  }
+
+  private HibernateUtils() {
   }
 }
