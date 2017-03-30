@@ -44,8 +44,8 @@ public class DataSourceFactory {
   public static PGSimpleDataSource createPGSimpleDataSource(Properties properties) {
     return createPGSimpleDataSource(
         properties.getProperty("url"),
-        properties.getProperty("user"),
-        properties.getProperty("jdbc.password")
+        properties.getProperty("username"),
+        properties.getProperty("password")
     );
   }
 

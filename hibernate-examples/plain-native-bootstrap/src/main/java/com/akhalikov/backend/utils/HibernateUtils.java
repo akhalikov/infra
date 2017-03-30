@@ -14,7 +14,11 @@ public class HibernateUtils {
     StandardServiceRegistry standardServiceRegistry = new StandardServiceRegistryBuilder()
         .build();
 
-    Metadata metadata = new MetadataSources(standardServiceRegistry)
+   return createSessionFactory(standardServiceRegistry);
+  }
+
+  private static SessionFactory createSessionFactory(StandardServiceRegistry serviceRegistry) {
+    Metadata metadata = new MetadataSources(serviceRegistry)
         .addAnnotatedClass(com.akhalikov.backend.users.User.class)
         .getMetadataBuilder()
         .build();

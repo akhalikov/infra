@@ -58,7 +58,7 @@
             <dependency>
                 <groupId>com.akhalikov.backend</groupId>
                 <artifactId>utils</artifactId>
-                <version>${project.version}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>

@@ -1,4 +1,4 @@
-package com.akhalikov.entity;
+package com.akhalikov.events;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -19,7 +19,7 @@ import java.util.Date;
 @Entity
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Table(name = "event")
+@Table(name = "events")
 @AttributeOverride(name = "id", column = @Column(name = "event_id", nullable = false))
 public class Event {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +32,10 @@ public class Event {
   @Column(name = "event_date")
   @Temporal(TemporalType.TIMESTAMP)
   private Date date;
+
+  // for Hibernate
+  Event() {
+  }
 
   public Integer getId() {
     return id;

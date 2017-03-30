@@ -1,13 +1,13 @@
 package com.akhalikov;
 
-import com.akhalikov.entity.Event;
+import com.akhalikov.events.Event;
+import com.akhalikov.events.EventDao;
 import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -28,11 +28,6 @@ public class SessionFactoryTest extends TestBase {
     statistics = createStatistics(sessionFactory);
 
     eventDao = new EventDao(sessionFactory);
-  }
-
-  @BeforeMethod
-  public void setUp() throws Exception {
-    addTestData();
   }
 
   @Test
