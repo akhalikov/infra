@@ -6,7 +6,7 @@
 
     <session-factory>
 
-        <mapping class="com.akhalikov.entity.Event"/>
+        <mapping class="com.akhalikov.entity.E¡vent"/>
         <mapping class="com.akhalikov.entity.Document"/>
 
     </session-factory>

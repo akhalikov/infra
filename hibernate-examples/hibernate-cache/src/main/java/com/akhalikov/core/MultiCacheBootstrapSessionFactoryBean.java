@@ -1,7 +1,7 @@
 package com.akhalikov.core;
 
 import static com.akhalikov.core.HibernateServiceRegistryBuilder.createBootstrapServiceRegistry;
-import com.akhalikov.integration.HibernateListenersIntegrator;
+import com.akhalikov.integration.ListenersIntegrator;
 import com.akhalikov.multicache.MultiCacheRegionFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.BootstrapServiceRegistry;
@@ -11,7 +11,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 
 public class MultiCacheBootstrapSessionFactoryBean extends LocalSessionFactoryBean {
-  private final HibernateListenersIntegrator eventListenersIntegrator = new HibernateListenersIntegrator();
+  private final ListenersIntegrator eventListenersIntegrator = new ListenersIntegrator();
 
   @Override
   protected SessionFactory buildSessionFactory(LocalSessionFactoryBuilder sfb) {

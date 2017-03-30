@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.internal.CacheImpl;
 import org.hibernate.stat.Statistics;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -51,7 +50,7 @@ public class EhCacheTest extends TestBase {
   }
 
   private static SessionFactory createSessionFactory() throws Exception {
-    LocalSessionFactoryBean sessionFactoryBean = createBootstrapSessionFactoryBean();
+    LocalSessionFactoryBean sessionFactoryBean = createSessionFactoryBean();
     sessionFactoryBean.setPackagesToScan("com.akhalikov.entity");
     sessionFactoryBean.afterPropertiesSet();
     return sessionFactoryBean.getObject();

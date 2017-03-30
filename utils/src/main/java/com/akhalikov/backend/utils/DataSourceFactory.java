@@ -2,6 +2,7 @@ package com.akhalikov.backend.utils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.postgresql.ds.PGSimpleDataSource;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -40,29 +41,59 @@ public class DataSourceFactory {
     return ds;
   }
 
-  private static void checkDataSource(DataSource dataSource) throws SQLException {
-    Connection connection = dataSource.getConnection();
-    if (!connection.isValid(1000)) {
-      throw new SQLException("Bad connection");
-    }
-    connection.close();
-  }
-
-  public static PGSimpleDataSource createPGSimpleDataSource(Properties properties) throws SQLException {
+  public static PGSimpleDataSource createPGSimpleDataSource(Properties properties) {
     return createPGSimpleDataSource(
-        properties.getProperty("jdbc.url"),
-        properties.getProperty("jdbc.user"),
+        properties.getProperty("url"),
+        properties.getProperty("user"),
         properties.getProperty("jdbc.password")
     );
   }
 
-  static PGSimpleDataSource createPGSimpleDataSource(String url, String user, String password) throws SQLException {
+  private static PGSimpleDataSource createPGSimpleDataSource(String url, String user, String password) {
     PGSimpleDataSource ds = new PGSimpleDataSource();
     ds.setUrl(url);
     ds.setUser(user);
     ds.setPassword(password);
     checkDataSource(ds);
     return ds;
+  }
+
+  public static DataSource createHsqlDataSource() {
+    SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
+
+    dataSource.setDriverClass(org.hsqldb.jdbc.JDBCDriver.class);
+    dataSource.setUrl("proxy:hsqldb:mem");
+
+    final Properties properties = new Properties();
+    properties.setProperty("user", "sa");
+    properties.setProperty("password", "");
+    properties.setProperty("sql.syntax_pgs", "true");
+    properties.setProperty("sql.enforce_tdc_delete", "false");
+    properties.setProperty("sql.enforce_tdc_update", "false");
+    properties.setProperty("sql.enforce_refs", "true");
+    properties.setProperty("sql.avg_scale", "10");
+    dataSource.setConnectionProperties(properties);
+
+    return dataSource;
+  }
+
+  private static void checkDataSource(DataSource dataSource) {
+    Connection connection = null;
+    try {
+      connection = dataSource.getConnection();
+      if (!connection.isValid(1000)) {
+        throw new SQLException("Bad connection");
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException("failed to check connection", e);
+    } finally {
+      if (connection != null) {
+        try {
+          connection.close();
+        } catch (SQLException e) {
+        }
+      }
+    }
   }
 
   private DataSourceFactory() {

@@ -3,7 +3,7 @@ package com.akhalikov.backend.examples;
 import com.akhalikov.backend.users.User;
 import org.hibernate.Session;
 
-class EntityLifecycles extends AbstractExample {
+class EntityLifeCycles extends AbstractExample {
   @Override
   void play() throws Exception {
     int userId;
@@ -42,17 +42,30 @@ class EntityLifecycles extends AbstractExample {
       session.clear();
 
       session.getTransaction().begin();
-      user.setLastName("Bobobo");
+      user.setLastName("Bobobo"); // now user is 'dirty'
 
       session.flush(); // expect that object will not sync, since it's detached
       session.getTransaction().commit();
 
       User userFromDb = session.byId(User.class).load(userId);
-      System.out.println("user in db: " + userFromDb);
       assert "Monroe".equals(userFromDb.getLastName()); // should have old value
+      System.out.println("user in db: " + userFromDb);
+
+      // clear again to detach userFromDb from hibernate
+      session.clear();
 
       // let's reattach our user to hibernate session
-      session.merge(user);
+      // dirty user object will be saved into database
+      session.saveOrUpdate(user);
+
+      // less evident way to reattach to hibernate is merge
+      // dirty user will be saved to database as with saveOrUpdate
+      // session.merge(user);
+
+      // yet another way to attach to hibernate session is this:
+      // Hibernate.initialize(user);
+      //
+      // problem: changes in user object will be lost and replaced with data from database
 
       userFromDb = session.byId(User.class).load(userId);
       assert "Bobobo".equals(userFromDb.getLastName());
@@ -61,6 +74,6 @@ class EntityLifecycles extends AbstractExample {
   }
 
   public static void main(String[] args) {
-    new EntityLifecycles().go();
+    new EntityLifeCycles().go();
   }
 }
