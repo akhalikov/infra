@@ -1,11 +1,10 @@
 package com.akhalikov.backend.users;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserDao {
 
-  Optional<User> get(int userId);
+  User get(int userId);
 
   List<User> getAll();
 

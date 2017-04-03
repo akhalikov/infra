@@ -4,8 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public class UserHibernateDao implements UserDao {
 
@@ -16,9 +16,9 @@ public class UserHibernateDao implements UserDao {
   }
 
   @Override
-  public Optional<User> get(int userId) {
+  public User get(int userId) {
     try (Session session = sessionFactory.openSession()) {
-      return Optional.ofNullable(session.get(User.class, userId));
+      return session.get(User.class, userId);
     }
   }
 
@@ -53,6 +53,28 @@ public class UserHibernateDao implements UserDao {
 
   public void create(String firstName, String lastName) {
     insert(new User(firstName, lastName));
+  }
+
+  public void update(User user) {
+    try (Session session = sessionFactory.openSession()) {
+      try {
+        session.getTransaction().begin();
+        user.setUpdatedDateTime(LocalDateTime.now());
+        session.saveOrUpdate(user);
+        session.getTransaction().commit();
+
+      } catch (Exception e) {
+
+        if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+          || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
+
+          System.out.println("rolling back transaction");
+          session.getTransaction().rollback();
+        }
+
+        throw new RuntimeException("failed to persist user " + user, e);
+      }
+    }
   }
 
   @Override

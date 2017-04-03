@@ -17,26 +17,29 @@ abstract class AbstractExample {
 
   void go() {
     try {
+      clean();
       addTestData();
       play();
     } catch (Exception e) {
       throw new RuntimeException("Failed to run example", e);
     } finally {
-      clean();
       sessionFactory.close();
     }
   }
 
   abstract void play() throws Exception;
 
-  private void addTestData() {
-    System.out.println("add test data...");
-
+  private void addTestData() throws Exception {
     try (Session session = sessionFactory.openSession()) {
+      System.out.println("create schema...");
       session.getTransaction().begin();
-      session.createNativeQuery("insert into users values (1,'John','Doe')").executeUpdate();
-      session.createNativeQuery("insert into users values (2,'Helen','Monro')").executeUpdate();
-      session.createNativeQuery("insert into users values (3,'Ivan','Dorn')").executeUpdate();
+      session.getTransaction().commit();
+
+      System.out.println("add test data...");
+      session.getTransaction().begin();
+      session.createNativeQuery("INSERT INTO users (last_name, first_name) VALUES ('John','Doe')").executeUpdate();
+      session.createNativeQuery("INSERT INTO users (last_name, first_name) VALUES ('Helen','Monro')").executeUpdate();
+      session.createNativeQuery("INSERT INTO users (last_name, first_name) VALUES ('Ivan','Dorn')").executeUpdate();
       session.getTransaction().commit();
     }
   }
@@ -46,7 +49,8 @@ abstract class AbstractExample {
 
     try (Session session = sessionFactory.openSession()) {
       session.getTransaction().begin();
-      session.createNativeQuery("delete from users").executeUpdate();
+      session.createNativeQuery("DELETE FROM users").executeUpdate();
+      session.createNativeQuery("ALTER SEQUENCE users_user_id_seq RESTART WITH 1;").executeUpdate();
       session.getTransaction().commit();
     }
   }
