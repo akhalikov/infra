@@ -10,16 +10,18 @@
 
     <modules>
         <module>examples</module>
-        <module>jetty-webapp</module>
+        <module>jetty-spring-mvc-webapp</module>
         <module>jetty-common</module>
     </modules>
 
     <properties>
         <jetty.version>9.3.0.v20150612</jetty.version>
+        <slf4j.version>1.7.21</slf4j.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--Jetty-->
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-server</artifactId>
@@ -44,6 +46,28 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-webapp</artifactId>
                 <version>${jetty.version}</version>
+            </dependency>
+
+            <!--Logging-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.1.7</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
