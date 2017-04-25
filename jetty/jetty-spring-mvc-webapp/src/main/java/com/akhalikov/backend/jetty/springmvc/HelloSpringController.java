@@ -1,4 +1,4 @@
-package com.akhalikov.backend.jetty.spring;
+package com.akhalikov.backend.jetty.springmvc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloSpringController {
   private static final Logger LOGGER = LoggerFactory.getLogger(HelloSpringController.class);
-
-  HelloSpringController() {
-    LOGGER.info("creating SpringController");
-  }
 
   @RequestMapping(value = "/hello/{name}", method = RequestMethod.GET)
   @ResponseBody

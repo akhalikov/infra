@@ -2,7 +2,6 @@ package com.akhalikov.backend.jetty.config;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.util.thread.ThreadPool;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -11,26 +10,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 @Configuration
 public class JettyConfig implements ApplicationContextAware {
-  private ApplicationContext applicationContext;
+  private ApplicationContext applicationContext; // spring will inject it's application context here
 
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     this.applicationContext = applicationContext;
-  }
-
-  @Bean
-  ServletHolder dispatcherServlet() {
-    AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-    ctx.setParent(applicationContext);
-
-    DispatcherServlet dispatcherServlet = new DispatcherServlet(ctx);
-    ServletHolder holder = new ServletHolder("dispatcherServlet", dispatcherServlet);
-    holder.setInitOrder(1);
-    return holder;
   }
 
   @Bean
@@ -39,15 +27,27 @@ public class JettyConfig implements ApplicationContextAware {
   }
 
   @Bean(initMethod = "start", destroyMethod = "stop")
-  Server jettyServer(ThreadPool jettyThreadPool, ServletHolder dispatcherServlet) throws Exception {
+  Server jettyServer(ThreadPool jettyThreadPool, WebAppContext jettyWebAppContext) throws Exception {
     Server server = createJettyServer(jettyThreadPool);
-
-    WebAppContext webApp = createWebAppContext();
-    webApp.getServletHandler().addServletWithMapping(dispatcherServlet, "/");
-
-    server.setHandler(webApp);
-
+    server.setHandler(jettyWebAppContext);
     return server;
+  }
+
+  @Bean
+  WebAppContext jettyWebAppContext() {
+    final WebAppContext jettyContext = new WebAppContext();
+    jettyContext.setContextPath("/");
+    jettyContext.setResourceBase("src/main/webapp");
+    jettyContext.setDescriptor("target/web.xml");
+    jettyContext.setClassLoader(Thread.currentThread().getContextClassLoader());
+
+    GenericWebApplicationContext springWebApplicationContext = new GenericWebApplicationContext();
+    springWebApplicationContext.setParent(applicationContext);
+    springWebApplicationContext.refresh();
+
+    jettyContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, springWebApplicationContext);
+
+    return jettyContext;
   }
 
   private static Server createJettyServer(ThreadPool threadPool) {
@@ -64,14 +64,5 @@ public class JettyConfig implements ApplicationContextAware {
     server.addConnector(serverConnector);
 
     return server;
-  }
-
-  private static WebAppContext createWebAppContext() {
-    final WebAppContext webApp = new WebAppContext();
-    webApp.setContextPath("/");
-    webApp.setResourceBase("src/main/webapp");
-    webApp.setDescriptor("target/web.xml");
-    webApp.setClassLoader(Thread.currentThread().getContextClassLoader());
-    return webApp;
   }
 }
