@@ -9,5 +9,5 @@
 
     <context:annotation-config/>
 
-    <bean class="com.akhalikov.backend.jetty.spring.AppConfig"/>
+    <bean class="com.akhalikov.backend.jetty.config.AppConfig"/>
 </beans>
