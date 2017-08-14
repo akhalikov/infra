@@ -1,4 +1,4 @@
-package com.akhalikov.backend.executors;
+package com.akhalikov.backend.utils.executors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

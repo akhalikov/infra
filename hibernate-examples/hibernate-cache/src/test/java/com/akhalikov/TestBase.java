@@ -1,8 +1,8 @@
 package com.akhalikov;
 
-import com.akhalikov.backend.utils.DataSourceFactory;
-import com.akhalikov.backend.utils.PrefixedProperties;
-import com.akhalikov.backend.utils.PropertiesFactory;
+import com.akhalikov.backend.utils.datasource.DataSourceFactory;
+import com.akhalikov.backend.utils.properties.PrefixedProperties;
+import com.akhalikov.backend.utils.properties.PropertiesFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
 import org.springframework.jdbc.core.JdbcTemplate;

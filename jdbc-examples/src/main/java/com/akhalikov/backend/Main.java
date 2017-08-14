@@ -3,11 +3,10 @@ package com.akhalikov.backend;
 import com.akhalikov.backend.users.User;
 import com.akhalikov.backend.users.UserDao;
 import com.akhalikov.backend.users.UserPlainJdbcDao;
-import com.akhalikov.backend.utils.DataSourceFactory;
-import com.akhalikov.backend.utils.PropertiesFactory;
+import com.akhalikov.backend.utils.datasource.DataSourceFactory;
+import com.akhalikov.backend.utils.properties.PropertiesFactory;
 
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.Properties;
 
 public class Main {
