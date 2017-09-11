@@ -1,7 +1,6 @@
 ### backend projects
 
 * cassandra-java-client: Java client for Cassandra
-* hibernate-examples: examples of using Hibernate 5
 * jdbc-examples: examples of using JDBC with PostgreSQL  
 * jersey-service-example: example of web-service using Jersey and Jetty
 * jetty-server: examples from https://eclipse.org/jetty/documentation/current/embedding-jetty.html  
