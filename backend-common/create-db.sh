@@ -1,6 +1,6 @@
 #!/bin/sh
 
-createdb 'backend'
-createuser -P 'backend'
+createdb -U postgres 'backend'
+createuser -U postgres -P 'backend'
 
 psql -U 'backend' -h localhost < ./create-tables.sql
