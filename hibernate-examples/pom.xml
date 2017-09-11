@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.akhalikov.backend</groupId>
+    <groupId>akhalikov.backend</groupId>
     <artifactId>hibernate-examples</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>plain-native-bootstrap</module>
-        <module>spring-native-bootstrap</module>
+        <module>plain-bootstrap</module>
+        <module>spring-bootstrap</module>
         <module>hibernate-cache</module>
     </modules>
 
@@ -22,7 +22,6 @@
     <build>
         <pluginManagement>
             <plugins>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
@@ -31,7 +30,6 @@
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -42,13 +40,11 @@
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
-
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.5.0</version>
                 </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
@@ -56,7 +52,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.akhalikov.backend</groupId>
+                <groupId>akhalikov.backend</groupId>
                 <artifactId>utils</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
@@ -79,42 +75,41 @@
                 <version>${hibernate.version}</version>
             </dependency>
 
+            <!--Logging-->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>log4j-over-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>1.1.7</version>
             </dependency>
 
+            <!--Testing-->
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>6.7</version>
                 <scope>test</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.akhalikov.backend</groupId>
+        <groupId>akhalikov.backend</groupId>
         <artifactId>hibernate-examples</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>plain-native-bootstrap</artifactId>
+    <artifactId>plain-bootstrap</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.akhalikov.backend</groupId>
+            <groupId>akhalikov.backend</groupId>
             <artifactId>utils</artifactId>
         </dependency>
 
@@ -31,17 +31,14 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>

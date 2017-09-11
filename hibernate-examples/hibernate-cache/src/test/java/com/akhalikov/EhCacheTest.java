@@ -20,6 +20,7 @@ import java.util.List;
 public class EhCacheTest extends TestBase {
   private static SessionFactory sessionFactory;
   private static EventDao eventDao;
+
   @BeforeClass
   public void setUpClass() throws Exception {
     hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", "true");

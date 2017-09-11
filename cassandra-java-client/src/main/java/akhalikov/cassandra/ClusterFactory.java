@@ -1,4 +1,4 @@
-package com.akhalikov.cassandra;
+package akhalikov.cassandra;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ConsistencyLevel;

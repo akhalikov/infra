@@ -3,8 +3,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.akhalikov.backend</groupId>
-        <artifactId>parent-pom</artifactId>
+        <groupId>akhalikov.backend</groupId>
+        <artifactId>backend-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
