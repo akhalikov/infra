@@ -1,4 +1,4 @@
-package com.akhalikov.backend.utils.datasource;
+package akhalikov.datasource;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;

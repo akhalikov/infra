@@ -1,4 +1,4 @@
-package com.akhalikov.backend.utils.datasource;
+package akhalikov.datasource;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -12,7 +12,6 @@ import java.util.Properties;
 public class DataSourceFactory {
 
   public static ComboPooledDataSource createC3P0DataSource(Properties properties) throws Exception {
-
     ComboPooledDataSource ds = new ComboPooledDataSource();
     ds.setJdbcUrl(properties.getProperty("jdbc.url"));
     ds.setUser(properties.getProperty("jdbc.user"));
@@ -42,38 +41,11 @@ public class DataSourceFactory {
   }
 
   public static PGSimpleDataSource createPGSimpleDataSource(Properties properties) {
-    return createPGSimpleDataSource(
-        properties.getProperty("url"),
-        properties.getProperty("username"),
-        properties.getProperty("password")
-    );
-  }
-
-  private static PGSimpleDataSource createPGSimpleDataSource(String url, String user, String password) {
-    PGSimpleDataSource ds = new PGSimpleDataSource();
-    ds.setUrl(url);
-    ds.setUser(user);
-    ds.setPassword(password);
-    checkDataSource(ds);
-    return ds;
-  }
-
-  public static DataSource createHsqlDataSource() {
-    SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-
-    dataSource.setDriverClass(org.hsqldb.jdbc.JDBCDriver.class);
-    dataSource.setUrl("proxy:hsqldb:mem");
-
-    final Properties properties = new Properties();
-    properties.setProperty("user", "sa");
-    properties.setProperty("password", "");
-    properties.setProperty("sql.syntax_pgs", "true");
-    properties.setProperty("sql.enforce_tdc_delete", "false");
-    properties.setProperty("sql.enforce_tdc_update", "false");
-    properties.setProperty("sql.enforce_refs", "true");
-    properties.setProperty("sql.avg_scale", "10");
-    dataSource.setConnectionProperties(properties);
-
+    PGSimpleDataSource dataSource = new PGSimpleDataSource();
+    dataSource.setUrl(properties.getProperty("url"));
+    dataSource.setUser(properties.getProperty("username"));
+    dataSource.setPassword(properties.getProperty("password"));
+    checkDataSource(dataSource);
     return dataSource;
   }
 

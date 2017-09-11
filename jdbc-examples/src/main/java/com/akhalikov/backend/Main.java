@@ -4,7 +4,7 @@ import com.akhalikov.backend.users.User;
 import com.akhalikov.backend.users.UserDao;
 import com.akhalikov.backend.users.UserPlainJdbcDao;
 import com.akhalikov.backend.utils.datasource.DataSourceFactory;
-import com.akhalikov.backend.utils.properties.PropertiesFactory;
+import akhalikov.utils.properties.PropertiesFactory;
 
 import javax.sql.DataSource;
 import java.util.Properties;

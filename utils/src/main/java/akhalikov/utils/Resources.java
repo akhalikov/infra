@@ -1,4 +1,4 @@
-package com.akhalikov.backend.utils;
+package akhalikov.utils;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
