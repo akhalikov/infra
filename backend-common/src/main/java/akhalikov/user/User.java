@@ -19,25 +19,25 @@ public class User {     // it does not implement Serializable
 
   @Id                   // The identifier attribute
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  Integer id;
 
   @Column(name = "first_name")
-  private String firstName;
+  String firstName;
 
   @Column(name = "last_name")
-  private String lastName;
+  String lastName;
 
   @Column(name = "birth_date")
-  private Date birthDate;
+  Date birthDate;
 
   @Column(name = "created_timestamp")
-  private LocalDateTime createdTime;
+  LocalDateTime createdTime;
 
   @Column(name = "updated_timestamp")
-  private LocalDateTime updatedTime;
+  LocalDateTime updatedTime;
 
   @Column(name = "test_date_time")
-  private ZonedDateTime testDateTime; // date time with time zone
+  ZonedDateTime testDateTime; // date time with time zone
 
   // constructor for Hibernate
   // the entity class must have a public, protected or package-private no-argument constructor
