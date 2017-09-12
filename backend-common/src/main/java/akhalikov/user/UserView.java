@@ -18,4 +18,14 @@ public class UserView {
     this.lastName = lastName;
     this.birthDate = birthDate;
   }
+
+  @Override
+  public String toString() {
+    return "UserView{" +
+        "id=" + id +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", birthDate=" + birthDate +
+        '}';
+  }
 }

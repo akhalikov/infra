@@ -28,7 +28,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.akhalikov.backend.jetty.WebappMain</mainClass>
+                    <mainClass>akhalikov.jdbc.jetty.WebappMain</mainClass>
                 </configuration>
             </plugin>
         </plugins>
