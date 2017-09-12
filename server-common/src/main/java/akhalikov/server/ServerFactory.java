@@ -13,13 +13,13 @@ public class ServerFactory {
 
   public static Server createServer(int port, Object...resources) {
     Servlet servlet = createServlet(resources);
-    Handler requestsHandler = createHandler(servlet);
+    Handler requestsHandler = createServletHandler(servlet);
     Server server = new Server(port);
     server.setHandler(requestsHandler);
     return server;
   }
 
-  private static Servlet createServlet(Object... resources) {
+  public static Servlet createServlet(Object... resources) {
     ResourceConfig jerseyResourceConfig = new ResourceConfig();
     for (Object resource : resources) {
       jerseyResourceConfig.register(resource);
@@ -27,7 +27,7 @@ public class ServerFactory {
     return new ServletContainer(jerseyResourceConfig);
   }
 
-  private static Handler createHandler(Servlet mainServlet) {
+  public static Handler createServletHandler(Servlet mainServlet) {
     ServletHolder servletHolder = new ServletHolder("MainServlet", mainServlet);
     ServletContextHandler servletContextHandler = new ServletContextHandler();
     servletContextHandler.addServlet(servletHolder, "/*");
