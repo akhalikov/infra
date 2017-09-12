@@ -1,4 +1,4 @@
-package com.akhalikov.backend.utils.properties;
+package akhalikov.utils.properties;
 
 import java.util.Enumeration;
 import java.util.Properties;

@@ -1,4 +1,4 @@
-package com.akhalikov.backend.utils.properties;
+package akhalikov.utils.properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +12,8 @@ public class PropertiesFactory {
 
   public static Properties load() {
     Properties defaultProperties = fromFile("app.properties");
-
     Properties overriddenProperties = fromFile("overridden.properties");
-
     defaultProperties.putAll(overriddenProperties);
-
     return defaultProperties;
   }
 

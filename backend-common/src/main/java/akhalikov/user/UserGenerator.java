@@ -20,13 +20,15 @@ public class UserGenerator {
   }
 
   public void generateUsers(int numOfUsers) {
-    LOGGER.info("start generating users");
-    for (int i = 0; i < numOfUsers && i < MAX_USERS; i++) {
+    LOGGER.info("start generating users", numOfUsers);
+    for (int i = 0; i <= numOfUsers && i <= MAX_USERS; i++) {
       User user = generateUser();
       userDao.saveUser(user);
-      LOGGER.info("saved user=", i);
+      if (i > 1000 && i % 1000 == 0) {
+        LOGGER.info("saved {} users", i+1);
+      }
     }
-    LOGGER.info("finished generating users");
+    LOGGER.info("finished");
   }
 
   private static User generateUser() {
