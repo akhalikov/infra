@@ -25,7 +25,7 @@ public class UserGenerator {
       User user = generateUser();
       userDao.saveUser(user);
       if (i > 1000 && i % 1000 == 0) {
-        LOGGER.info("saved {} users", i+1);
+        LOGGER.info("saved {} users", i);
       }
     }
     LOGGER.info("finished");
