@@ -11,16 +11,30 @@
     <artifactId>server-common</artifactId>
 
     <properties>
-        <jetty.version>9.4.5.v20170502</jetty.version>
+        <jetty.version>9.4.6.v20170531</jetty.version>
         <jersey.version>2.25.1</jersey.version>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>akhalikov.backend</groupId>
+            <artifactId>utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>${jetty.version}</version>
+            <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
