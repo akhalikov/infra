@@ -15,9 +15,11 @@
         <module>jetty-spring-mvc</module>
         <module>jdbc-examples</module>
         <module>jersey-service-example</module>
-        <module>spring-examples</module>
+        <module>spring-example-app</module>
+        <module>guice-example-app</module>
         <module>server-common</module>
         <module>utils</module>
+        <module>stats</module>
     </modules>
 
     <properties>

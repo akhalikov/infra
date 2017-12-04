@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-examples</artifactId>
+    <artifactId>spring-example-app</artifactId>
 
     <properties>
         <spring.version>4.3.4.RELEASE</spring.version>
