@@ -11,12 +11,12 @@
     <modules>
         <module>backend-common</module>
         <module>cassandra-java-client</module>
-        <module>jetty-examples</module>
-        <module>jetty-spring-mvc</module>
         <module>jdbc-examples</module>
         <module>jersey-service-example</module>
+        <module>jersey2-spring4-webapp</module>
+        <module>jetty-examples</module>
+        <module>jetty-spring-mvc</module>
         <module>spring-example-app</module>
-        <module>guice-example-app</module>
         <module>server-common</module>
         <module>utils</module>
         <module>stats</module>
@@ -67,6 +67,11 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>

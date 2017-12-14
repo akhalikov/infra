@@ -41,7 +41,6 @@ public class JettyFactory {
     server.setStopAtShutdown(true);
 
     return server;
-
   }
 
   private static HttpConnectionFactory createHttpConnectionFactory() {

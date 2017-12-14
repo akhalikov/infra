@@ -37,7 +37,7 @@ public class JettyConfig implements ApplicationContextAware {
   }
 
   @Bean(initMethod = "start", destroyMethod = "stop")
-  Server jettyServer(ThreadPool jettyThreadPool) throws Exception {
+  Server jettyServer(ThreadPool jettyThreadPool) {
     Server server = createJettyServer(getJettySettings(), jettyThreadPool);
     WebAppContext webApp = createWebAppContext();
 
