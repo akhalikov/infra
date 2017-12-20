@@ -1,4 +1,4 @@
-package example1;
+package akhalikov.spring4webapp.beannaming;
 
 class MessageController {
   private final MessageService messageService;

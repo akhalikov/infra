@@ -3,7 +3,7 @@ package akhalikov.jdbc;
 import static akhalikov.datasource.DataSourceFactory.createPGSimpleDataSource;
 import akhalikov.jdbc.user.User;
 import akhalikov.jdbc.user.UserJdbcDao;
-import akhalikov.utils.properties.PropertiesFactory;
+import akhalikov.utils.properties.PropertyUtils;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -11,7 +11,7 @@ import java.util.Properties;
 public class JdbcMain {
 
   public static void main(String[] args) throws Exception {
-    Properties properties = PropertiesFactory.load();
+    Properties properties = PropertyUtils.load();
     DataSource dataSource = createPGSimpleDataSource(properties);
     UserJdbcDao dao = new UserJdbcDao(dataSource);
     User user = User.create("John", "Doe");

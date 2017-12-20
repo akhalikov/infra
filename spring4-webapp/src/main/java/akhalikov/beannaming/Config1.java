@@ -1,4 +1,4 @@
-package example1;
+package akhalikov.spring4webapp.beannaming;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -16,7 +16,8 @@
         <module>jersey2-spring4-webapp</module>
         <module>jetty-examples</module>
         <module>jetty-spring-mvc</module>
-        <module>spring-example-app</module>
+        <module>spring4-webapp</module>
+        <module>spring5-webapp</module>
         <module>server-common</module>
         <module>utils</module>
         <module>stats</module>

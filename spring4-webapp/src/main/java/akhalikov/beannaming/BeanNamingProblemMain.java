@@ -1,4 +1,4 @@
-package example1;
+package akhalikov.spring4webapp.beannaming;
 
 import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

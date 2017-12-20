@@ -1,4 +1,4 @@
-package example1;
+package akhalikov.spring4webapp.beannaming;
 
 public class NewMessageServiceImpl implements MessageService {
 
