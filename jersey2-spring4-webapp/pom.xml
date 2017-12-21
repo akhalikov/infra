@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jersey1-spring4-webapp</artifactId>
+    <artifactId>jersey2-spring4-webapp</artifactId>
 
     <properties>
         <spring.version>4.3.4.RELEASE</spring.version>
@@ -45,6 +45,16 @@
             <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
         <!--Jetty-->
         <dependency>
@@ -58,10 +68,10 @@
             <version>${jetty.version}</version>
         </dependency>
 
-        <!--Jersey-->
+        <!-- Jersey -->
         <dependency>
-            <groupId>org.glassfish.jersey.ext</groupId>
-            <artifactId>jersey-spring4</artifactId>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
             <version>${jersey.version}</version>
         </dependency>
 
