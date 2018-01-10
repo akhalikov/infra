@@ -1,4 +1,4 @@
-package simpleservice;
+package akhalikov.jersey2.helloworld;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,16 +6,14 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-/**
- * Hello resource
- */
 @Path("/")
-public class HelloController {
+public class HelloWorldResource {
   private final Logger log = LoggerFactory.getLogger(this.getClass());
 
   @GET
   public String hello() {
     log.info("Test log message");
-    return "<h3>Hello, Backend :)</h3>";
+
+    return "<h3>Example Jersey web app</h3>";
   }
 }

@@ -12,7 +12,9 @@
         <module>backend-common</module>
         <module>cassandra-java-client</module>
         <module>jdbc-examples</module>
-        <module>jersey-service-example</module>
+        <module>jersey2-helloworld</module>
+        <module>jersey1-spring4-webapp</module>
+        <module>jersey1-spring4-webapp-annotations</module>
         <module>jersey2-spring4-webapp</module>
         <module>jetty-examples</module>
         <module>jetty-spring-mvc</module>

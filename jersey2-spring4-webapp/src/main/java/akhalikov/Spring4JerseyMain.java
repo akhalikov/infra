@@ -16,7 +16,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 
 import static akhalikov.utils.properties.PropertyUtils.setSystemPropertyIfAbsent;
 
-public class Spring4JerseyLauncher {
+public class Spring4JerseyMain {
 
   public static void main(String[] args) throws Exception {
     SLF4JBridgeHandler.removeHandlersForRootLogger();

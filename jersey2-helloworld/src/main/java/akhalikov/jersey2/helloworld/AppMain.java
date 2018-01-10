@@ -1,6 +1,10 @@
-package simpleservice;
+package akhalikov.jersey2.helloworld;
 
-import org.eclipse.jetty.server.*;
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.HttpConfiguration;
+import org.eclipse.jetty.server.HttpConnectionFactory;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -11,31 +15,20 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import javax.servlet.Servlet;
 
-/**
- * Webapp main class
- *
- * @author ahalikov
- */
-public class Main {
-  private static int SERVER_PORT = 8181;
+public class AppMain {
 
   public static void main(String[] args) throws Exception {
     SLF4JBridgeHandler.removeHandlersForRootLogger();
     SLF4JBridgeHandler.install();
 
-    Server jettyServer = null;
-    try {
-      final ResourceConfig jerseyResourceConfig = createJerseyResourceConfig();
-      final Servlet jerseyServlet = new ServletContainer(jerseyResourceConfig);
-      final Handler jettyRequestHandler = createJettyRequestHandler(jerseyServlet);
-      jettyServer = createJettyServer(jettyRequestHandler);
+    Server jettyServer;
+    final ResourceConfig jerseyResourceConfig = createJerseyResourceConfig();
+    final Servlet jerseyServlet = new ServletContainer(jerseyResourceConfig);
+    final Handler jettyRequestHandler = createJettyRequestHandler(jerseyServlet);
+    jettyServer = createJettyServer(jettyRequestHandler);
 
-      jettyServer.start();
-      jettyServer.join();
-    } finally {
-      if (jettyServer != null)
-        jettyServer.destroy();
-    }
+    jettyServer.start();
+    jettyServer.join();
   }
 
   private static HttpConfiguration createHttpConfiguration() {
@@ -48,8 +41,7 @@ public class Main {
 
   private static ResourceConfig createJerseyResourceConfig() {
     final ResourceConfig resourceConfig = new ResourceConfig();
-    resourceConfig.register(new HelloController());
-    resourceConfig.register(new KaptchaController());
+    resourceConfig.register(HelloWorldResource.class);
     return resourceConfig;
   }
 
@@ -72,7 +64,7 @@ public class Main {
   private static Server createJettyServer(final Handler requestsHandler) {
     final Server server = new Server();
     ServerConnector connector = new ServerConnector(server, new HttpConnectionFactory(createHttpConfiguration()));
-    connector.setPort(SERVER_PORT);
+    connector.setPort(8181);
     connector.setIdleTimeout(30000);
     server.addConnector(connector);
     server.setHandler(requestsHandler);

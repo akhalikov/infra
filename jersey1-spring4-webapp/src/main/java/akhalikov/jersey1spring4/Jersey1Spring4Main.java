@@ -8,7 +8,7 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 import java.util.Properties;
 
-public class Jersey1Spring4Launcher {
+public class Jersey1Spring4Main {
 
   public static void main(String[] args) throws Exception {
 
