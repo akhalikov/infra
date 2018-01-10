@@ -1,3 +1,4 @@
+/*
 package akhalikov.stats;
 
 import com.timgroup.statsd.NonBlockingStatsDClient;
@@ -46,3 +47,4 @@ public class StatsMain {
     TimeUnit.SECONDS.sleep(10);
   }
 }
+*/
