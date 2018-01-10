@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="ROOT" class="ch.qos.logback.core.FileAppender">
-        <file>log/jersey-webapp.log</file>
+    <property scope="context" name="log.dir" value="${log.dir:-logs}"/>
+    <property scope="context" name="log.pattern" value="%d{dd.MM.yyyy HH:mm:ss.SSS} %-5level %thread %X{request} %logger{36} %msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{dd.MM.yyyy HH:mm:ss.SSS} %-5level %thread %X{request} %logger{36} %msg%n</pattern>
+            <pattern>${log.pattern}</pattern>
         </encoder>
     </appender>
+
+    <logger name="org.eclipse.jetty" additivity="false" level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
     <root>
         <level value="INFO"/>
-        <appender-ref ref="ROOT"/>
+        <appender-ref ref="CONSOLE"/>
     </root>
+
 </configuration>
