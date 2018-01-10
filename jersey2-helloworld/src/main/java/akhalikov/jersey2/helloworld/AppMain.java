@@ -21,11 +21,13 @@ public class AppMain {
     SLF4JBridgeHandler.removeHandlersForRootLogger();
     SLF4JBridgeHandler.install();
 
-    Server jettyServer;
-    final ResourceConfig jerseyResourceConfig = createJerseyResourceConfig();
-    final Servlet jerseyServlet = new ServletContainer(jerseyResourceConfig);
-    final Handler jettyRequestHandler = createJettyRequestHandler(jerseyServlet);
-    jettyServer = createJettyServer(jettyRequestHandler);
+    ResourceConfig jerseyResourceConfig = createJerseyResourceConfig();
+
+    Servlet jerseyServlet = new ServletContainer(jerseyResourceConfig);
+
+    Handler jettyRequestHandler = createJettyRequestHandler(jerseyServlet);
+
+    Server jettyServer = createJettyServer(jettyRequestHandler);
 
     jettyServer.start();
     jettyServer.join();
