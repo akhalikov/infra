@@ -1,6 +1,6 @@
 package akhalikov.jdbc;
 
-import static akhalikov.datasource.DataSourceFactory.createPGSimpleDataSource;
+import static akhalikov.utils.c3p0.DataSourceFactory.createPGSimpleDataSource;
 import akhalikov.jdbc.user.User;
 import akhalikov.jdbc.user.UserJdbcDao;
 import akhalikov.utils.properties.PropertyUtils;

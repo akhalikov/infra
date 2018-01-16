@@ -1,6 +1,5 @@
 ### backend projects
 
-* backend-common: commonly used tools
 * cassandra-java-client: Java client for Cassandra
 * jdbc-examples: examples of using JDBC with PostgreSQL  
 * jersey1: example of web service using Jersey v.1, Jetty and Spring

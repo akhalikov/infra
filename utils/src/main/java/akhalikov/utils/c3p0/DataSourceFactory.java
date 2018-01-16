@@ -1,8 +1,7 @@
-package akhalikov.datasource;
+package akhalikov.utils.c3p0;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.postgresql.ds.PGSimpleDataSource;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

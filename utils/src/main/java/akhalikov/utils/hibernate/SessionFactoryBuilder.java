@@ -1,4 +1,4 @@
-package akhalikov.hibernate;
+package akhalikov.utils.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

@@ -1,18 +1,19 @@
-package akhalikov.datasource;
+package akhalikov.utils.hsql;
 
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
-
+import com.mchange.v2.c3p0.DriverManagerDataSource;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-public class HSqlDataSourceFactory {
+public class EmbeddedHSqlDataSourceFactory {
 
   public static DataSource createHsqlDataSource() {
-    SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setJdbcUrl("proxy:hsqldb:mem");
+    dataSource.setProperties(getDataSourceProperties());
+    return dataSource;
+  }
 
-    dataSource.setDriverClass(org.hsqldb.jdbc.JDBCDriver.class);
-    dataSource.setUrl("proxy:hsqldb:mem");
-
+  private static Properties getDataSourceProperties() {
     Properties properties = new Properties();
     properties.setProperty("user", "sa");
     properties.setProperty("password", "");
@@ -21,11 +22,9 @@ public class HSqlDataSourceFactory {
     properties.setProperty("sql.enforce_tdc_update", "false");
     properties.setProperty("sql.enforce_refs", "true");
     properties.setProperty("sql.avg_scale", "10");
-    dataSource.setConnectionProperties(properties);
-
-    return dataSource;
+    return properties;
   }
 
-  private HSqlDataSourceFactory() {
+  private EmbeddedHSqlDataSourceFactory() {
   }
 }
