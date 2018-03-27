@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/akhalikov/backend.svg?branch=master)](https://travis-ci.org/akhalikov/backend)
+
 ### backend projects
 
 * cassandra-java-client: Java client for Cassandra
