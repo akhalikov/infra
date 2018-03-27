@@ -64,11 +64,6 @@
 
         <!--Jetty-->
         <dependency>
-            <groupId>akhalikov.backend</groupId>
-            <artifactId>server-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>${jetty.version}</version>

@@ -1,6 +1,7 @@
 package akhalikov.spring5webapp;
 
-import akhalikov.utils.jetty.JettyFactory;
+import static akhalikov.utils.jetty.JettyFactory.createJettyServer;
+import static akhalikov.utils.jetty.JettyFactory.createJettyThreadPool;
 import akhalikov.utils.properties.Settings;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.thread.ThreadPool;
@@ -15,11 +16,9 @@ public class Launcher {
     SLF4JBridgeHandler.install();
 
     try (final AbstractApplicationContext context = new AnnotationConfigApplicationContext()) {
-      ThreadPool threadPool = JettyFactory.createJettyThreadPool(8, 2);
+      ThreadPool threadPool = createJettyThreadPool(8, 2);
       Settings settings = context.getBean(Settings.class);
-      Server server = JettyFactory.createJettyServer(settings.getSubSettings("jetty"), threadPool);
-
-      WebappServletInitializer servletInitializer = new WebappServletInitializer();
+      Server server = createJettyServer(settings.getSubSettings("jetty"), threadPool);
 
       server.setStopAtShutdown(true);
       server.setStopTimeout(10);
