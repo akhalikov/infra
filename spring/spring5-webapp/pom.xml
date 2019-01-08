@@ -12,7 +12,7 @@
 
     <properties>
         <spring.version>5.0.2.RELEASE</spring.version>
-        <jetty.version>9.4.6.v20170531</jetty.version>
+        <jetty.version>[9.4.11.v20180605,)</jetty.version>
     </properties>
 
     <dependencies>

@@ -13,7 +13,7 @@
     <properties>
         <spring.version>4.3.21.RELEASE</spring.version>
         <jersey.version>2.26</jersey.version>
-        <jetty.version>9.4.6.v20170531</jetty.version>
+        <jetty.version>[9.4.11.v20180605,)</jetty.version>
     </properties>
 
     <dependencies>
