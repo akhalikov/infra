@@ -11,7 +11,7 @@
     <artifactId>jersey2-spring-example</artifactId>
 
     <properties>
-        <spring.version>4.3.4.RELEASE</spring.version>
+        <spring.version>4.3.21.RELEASE</spring.version>
         <jersey.version>2.26</jersey.version>
         <jetty.version>9.4.6.v20170531</jetty.version>
     </properties>
